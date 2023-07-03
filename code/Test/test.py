@@ -145,4 +145,26 @@ def test8():
         rect = fitz.Rect(i["bbox"])
         page.draw_rect(rect)
     doc.save("绘制attention正文block" + ".pdf")
-test8()
+# test8()
+
+def test9():
+    """
+    测试:get_other_font中的find_other_font函数提取效果
+    """
+    from get_other_font import find_other_font
+    import fitz
+    other_font = find_other_font()
+    doc = fitz.open(head.path)
+    for i in other_font:
+        print(i["page"])
+        print(i["bbox"])
+        page = doc[i["page"]]
+        rect =fitz.Rect(i["bbox"])
+        page.draw_rect(rect)
+    doc.save("绘制TEST的其他font" + ".pdf")
+test9()
+"""
+问题:
+对三个pdf文档进行提取other font
+绘制other font的效果并不太好,对于复杂文本的公式,表格等提取的很乱,失去了其关联性
+"""
