@@ -3,10 +3,13 @@ import fitz
 from collections import Counter
 import fitz
 import head
+"""
+问题：会找到image span作为正文span
+"""
 def statistics_of_font_size(page):
     """
     参数:page是单个fitz类对象，且为一页
-    返回值:返回当前页出现最多的front size,及span对应的box坐标和文本
+    返回值:返回当前页出现的front size,及span对应的box坐标和文本
     """
     font_size = []
     font_size_bbox = []
@@ -32,8 +35,7 @@ def statistics_of_font_size(page):
 def find_main_text_font_size(path):
     """
     功能：
-        找正文font size，并返回全文频率最高span size
-
+        找正文font size，返回全文频率最高span size
     参数：
         path
     返回值：
@@ -46,11 +48,10 @@ def find_main_text_font_size(path):
         record_most_account = record_most_account + list(font_size)
     print("全文span总量:", len(record_most_account))
     font_size_choice = sorted(dict(Counter(record_most_account)).items(), key=lambda x: x[1])[-1][0]
-    #     print(Counter(record_most_account))
+    print("Counter:",Counter(record_most_account))
     # 正文文本选择要设定一个阈值（经验判断可为-+2）
     print("全文频率最高span size:", font_size_choice)
     return font_size_choice
-
 
 # 找正文
 def find_main_text(path, main_text_font_size):
@@ -88,41 +89,6 @@ def find_main_text(path, main_text_font_size):
 
 
 
-
-def find_font_size_number_more_than_twice(path,main_text_font_size):
-    """
-    功能:统计font size出现次数>2的span
-    思路:先获得全文span的font size再用Counter统计
-    参数:
-    返回值:
-    """
-    doc = fitz.open(path)
-    record_most_account = []
-    for i in range(doc.page_count):
-        font_size,_,_ = statistics_of_font_size(doc[i])
-        record_most_account = record_most_account+list(font_size)
-    print("全文span总量:",len(record_most_account))
-    order_list = sorted(dict(Counter(record_most_account)).items(),key=lambda x:x[0],reverse=1)
-#     print(order_list)
-    new_order_list=[]
-    for i,j in dict(order_list).items():
-        if i>main_text_font_size and j>=2:
-            new_order_list.append((i,j))
-    return dict(new_order_list),record_most_account
-
-
-def recovery_order_via_dict(dict_1,font_size_list):
-    """
-    功能:通过字典做font size的list筛选，恢复全局顺序
-    参数:字典和font size list
-    返回值:
-        顺序list
-    """
-    recovery_list = []
-    for i in font_size_list:
-        if i in dict_1.keys():
-            recovery_list.append(i)
-    return recovery_list
 
 
 

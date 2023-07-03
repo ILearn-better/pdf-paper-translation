@@ -1,7 +1,4 @@
 [TOC]
-
-
-
 # AI could create a  perfect storm of  climate misinformation
 
 ## AI could create a perfect storm  of climate misinformation
@@ -23,3 +20,9 @@ What we believe is not only a ***result*** of our own reasoning, but also  of th
 Digital platforms are designed to maximize engagement. Recommender  systems play a key role as they shape digital social networks, and the  flow of information. Weaknesses in their underlying algorithmic systems  are already today being exploited to try to influence public opinion on  climate and sustainability issues. Automation through social bots also  play a role, although their impacts are contested.
 
 ![image-20230630171917511](C:\Users\EDY\AppData\Roaming\Typora\typora-user-images\image-20230630171917511.png)
+
+## Emotions and group dynamics  around misinformation on  social media
+Nuanced views and clean facts don’t generate clicks. Social networks  are designed to speak to our emotions, and the more extreme the  emotions, the better the content. But that does not mean that good  arguments, education, and science communication are futile.
+
+## When health and climate  misinformation overlap
+Health and climate are two topics that often are affected by misand disinformation. Where the two overlap, a perfect storm for  false claims can grow. Experiences from the “digital backlash” that  followed the launch of the “planetary health diet” can teach us  important lessons about what happens when health and climate  misinformation act in tandem.
