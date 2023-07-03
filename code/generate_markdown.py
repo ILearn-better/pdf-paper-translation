@@ -24,12 +24,38 @@ def pdf_to_markdown(pdf_path, markdown_path):
                         for span in line["spans"]:
                             # print(span)
                             if span["size"]>main_text_size:
-                                md_file.write(span["text"])
+                                md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>"+"\n")
                             if span["size"]==main_text_size:
-                                md_file.write(span["text"])
-                    md_file.write("\n")
-
+                                md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>")
+                md_file.write("\n")
+        """
+        对比找问题：
+        1.目录结构未保留
+        2.字体显示有问题
+        3.换行与文本连贯性
+        """
     doc.close()
+
+def pdf_mainText_to_markdown(pdf_path, markdown_path):
+    """
+    功能:
+        功能
+    参数:
+
+    返回值:
+
+    """
+    from find_paragraph import get_main_text_block
+    main_text_block = get_main_text_block()
+    with open(markdown_path, 'w', encoding='utf-8') as md_file:
+        for block in main_text_block:
+            print(block["page"])
+            if block["type"]==0:
+                for line in block["lines"]:
+                    for span in line["spans"]:
+                        md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>")
+                md_file.write("\n"+"\n")
+
 
 # 提供 PDF 文件路径和输出 Markdown 文件路径
 pdf_path = head.path

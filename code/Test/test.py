@@ -79,7 +79,7 @@ def test5():
     from tools_function import draw_pdf1
     span_,_ = Choose_TOC_span(head.path)
     draw_pdf1(span_,"检测TOC提取情况_基于AI could create a 文档")
-test5()
+# test5()
 
 def test6():
     """
@@ -133,6 +133,10 @@ def test7():
 # test7()
 
 def test8():
+    """
+    测试用block当作正文
+    :return:
+    """
     from find_paragraph import get_main_text_block
     main_text_block = get_main_text_block()
     doc = fitz.open(head.path)
@@ -140,5 +144,5 @@ def test8():
         page = doc[i["page"]]
         rect = fitz.Rect(i["bbox"])
         page.draw_rect(rect)
-    # doc.save("绘制TEST正文block" + ".pdf")
-# test8()
+    doc.save("绘制attention正文block" + ".pdf")
+test8()

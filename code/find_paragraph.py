@@ -60,7 +60,8 @@ def get_main_text_block():
     功能:
         拿正文block（很难拿，因为一些block中混合各种span。例如目录，正文等）
         在一些文章中，一个block就是一段，在这些文章中提取段落只需要判断block是否为正文就行
-    思路
+    思路:
+        在全文block中找能满足span==main_text_font_size的参数
     参数:full_page_block:所有页的block
     返回值:
 
