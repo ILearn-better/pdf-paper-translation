@@ -38,21 +38,25 @@ python 3.8.7
 
 **2023.07.03**
 
-1. 完成other font提取模块并测试。
-    问题:
+1. 完成other font提取模块并测试。  
+    问题:  
 
   	对三个pdf文档进行提取other font进行对比：
   		绘制复杂pdf的other font的效果并不太好,对于复杂文本的公式,表格等提取的很乱,失去了其关联性，甚至可以说该部分信息已失效。所以一般的，之后尝试将含有公式和表格的block作为图片保存，通过OCR技术进行提取或仅存为图片。
 
-2. 改善markdown生成的格式问题
+2. 改善markdown生成的格式问题  
 
-   ​	利用<span>标签的style属性，将font-size与span size对应，增强生成后的markdown可读性
-   ​	问题:表格和图片没有对应插入
+   ​	利用<span>标签的style属性，将font-size与span size对应，增强生成后的markdown可读性  
+   ​	问题:表格和图片没有对应插入  
 
-3. 配置githunb上同类型的开源项目环境。对比一下效果，调整下一步思路。
-	>[pdf-to-markdown](https://github.com/lxulxu/pdf-to-markdown)
-4. 阅读其他项目文档
-    表格提取
-    公式提取
+3. 配置githunb上同类型的开源项目环境。  
 
-	> [聊聊Python模块导入机制与大型项目规范：](https://juejin.cn/post/6876310603942920200)
+  对比一下效果，调整下一步思路。  
+
+  >[pdf-to-markdown](https://github.com/lxulxu/pdf-to-markdown)
+
+4. 阅读其他项目文档  
+    表格提取  
+    公式提取  
+
+    > [聊聊Python模块导入机制与大型项目规范：](https://juejin.cn/post/6876310603942920200)
