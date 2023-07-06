@@ -60,9 +60,10 @@ def find_main_text(path, main_text_font_size):
         通过比较font_size找正文
     参数:
         main_text_font_size是全文出现频率最高的font_size
-    返回值:span字典
-        主要要其中的text,bbox关键字
-        [{"text":''},{"bbox":[]}]
+    返回值:
+        span字典
+        主要要其中的text,bbox,page关键字
+        {"text":'',"bbox":[],page:num}
     """
     main_text_font_size = find_main_text_font_size(path)
     doc = fitz.open(path)

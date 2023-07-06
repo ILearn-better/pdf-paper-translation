@@ -4,6 +4,7 @@ from find_main_text import find_main_text_font_size,find_main_text
 """
 在一些文章中，一个block就是一段，在这些文章中提取段落只需要判断block是否为正文就行
 """
+
 def find_border_of_page(path):#没写完
     """
     思路:
@@ -64,7 +65,7 @@ def get_main_text_block():
         在全文block中找能满足span==main_text_font_size的参数
     参数:full_page_block:所有页的block
     返回值:
-
+        正文block
     :return:
     """
     from find_main_text import find_main_text_font_size

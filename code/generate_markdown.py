@@ -39,11 +39,11 @@ def pdf_to_markdown(pdf_path, markdown_path):
 def pdf_mainText_to_markdown(pdf_path, markdown_path):
     """
     功能:
-        功能
+        正文转markdown
     参数:
-
+        pdf_path:pdf路径
+        markdown_path:markdown路径
     返回值:
-
     """
     from find_paragraph import get_main_text_block
     main_text_block = get_main_text_block()
@@ -55,11 +55,10 @@ def pdf_mainText_to_markdown(pdf_path, markdown_path):
                     for span in line["spans"]:
                         md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>")
                 md_file.write("\n"+"\n")
-
-
 # 提供 PDF 文件路径和输出 Markdown 文件路径
 pdf_path = head.path
 markdown_path = "output.md"
-
 # 调用函数将 PDF 转换为 Markdown
 pdf_to_markdown(pdf_path, markdown_path)
+
+

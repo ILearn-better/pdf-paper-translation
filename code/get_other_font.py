@@ -48,4 +48,4 @@ def find_other_font():
         else:
             other_font.append(i)
     return other_font
-find_other_font()
+# find_other_font()

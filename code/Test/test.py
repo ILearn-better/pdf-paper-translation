@@ -75,11 +75,12 @@ def test5():
     测试Choose_TOC_span函数提取性能
     :return:
     """
-    from find_TOC import Choose_TOC_span
-    from tools_function import draw_pdf1
-    span_,_ = Choose_TOC_span(head.path)
-    draw_pdf1(span_,"检测TOC提取情况_基于AI could create a 文档")
-# test5()
+    # from find_TOC import Choose_TOC_span
+    # from tools_function import draw_pdf1
+    import head
+    span_,_ = head.Choose_TOC_span(head.path)
+    head.draw_pdf1(span_,"Calibrating distribution models from PELVE")
+test5()
 
 def test6():
     """
@@ -162,7 +163,7 @@ def test9():
         rect =fitz.Rect(i["bbox"])
         page.draw_rect(rect)
     doc.save("绘制TEST的其他font" + ".pdf")
-test9()
+# test9()
 """
 问题:
 对三个pdf文档进行提取other font
