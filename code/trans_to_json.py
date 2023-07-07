@@ -47,5 +47,5 @@ def trans_to_json():
     file_name ="pdf_to_json"
     save_path = head.os.path.join(head.os.getcwd(),"output",file_name+".json")
     with open(save_path,"w",encoding="utf-8") as file:
-        file.write(json.dumps(Json_1,indent=4))
+        file.write(json.dumps(Json_1,ensure_ascii=False,indent=4))
 trans_to_json()

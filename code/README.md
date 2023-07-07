@@ -80,3 +80,21 @@ python 3.8.7
 协助简历提取
 
 讨论json结构搭建，完成json生成
+**2023.07.07**
+
+接下来的任务：
+- pdf的表格和公式提取模块（转为图片）
+- pdf内容提取并保存为相同文本结构
+- pdf翻译
+- 保证翻译保存的文本格式不变    
+翻译策略：
+1.只对目录和正文翻译，其他文本保持原样，即一段英文（提取到的）一段翻译从上到下按顺序排（不好）
+2. 英文和中文分开保存
+
+今日完成：
+- 实验：
+1. 验证通过html恢复pdf结构可行性。pdf内容提取并转为Html(包括格式)，通过坐标恢复文本结构（html）。
+2. 实现pdf中的表格检测
+3. 运行Github开源项目
+[EasyTrans-mac](https://github.com/Ding-Kyoma/EasyTrans-mac)
+[PP-Structure 文档分析](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/ppstructure/README_ch.md)
