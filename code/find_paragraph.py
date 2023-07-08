@@ -78,7 +78,8 @@ def get_main_text_block():
                 for span in line["spans"]:
                     if span["size"]==main_text_font_size:
                         main_text_block.append(block)
-                        break
+                        break#如果只有一层break，当一个block中含多个line，就会多次添加，导致重复
+                break#添加该层break，使得返回的block只有一个
     return main_text_block
 
 def get_line(block_):

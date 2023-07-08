@@ -15,9 +15,9 @@ from PIL import Image
 import cv2
 import numpy as np
 global path
-# path =r"../media/Attention is all you need.pdf"
+path =r"../media/Attention is all you need.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
-path =r"../media/TEST.pdf"
+# path =r"../media/TEST.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\Calibrating distribution models from PELVE.pdf"
 """
 可以写一个功能函数:

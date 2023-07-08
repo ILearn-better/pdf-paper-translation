@@ -21,11 +21,10 @@ def recovery_pdfstrure():
             for block in text_dict["blocks"]:
                 print(block["bbox"])
                 height = block["bbox"][3]-block["bbox"][0]
-                html.write("<div id=\"{}\" style=\"top: {}pt;left:{}pt;line-height:{}pt\">".format(num, block["bbox"][1], block["bbox"][0],height))
+                html.write("<p id=\"{}\" style=\"top: {}pt;left:{}pt;\">".format(num, block["bbox"][1], block["bbox"][0]))
                 if block["type"] ==0:
                     for line in block["lines"]:
-                        # html.write("<p style=\"top: {}pt;left:{}pt\">".format(num, line["bbox"][1], line["bbox"][0]
-                        #                                                                       ))
+                        html.write("<a style=\"top: {}pt;left:{}pt\">".format(line["bbox"][1], line["bbox"][0]))
                         # print(line.keys())
                         for span in line["spans"]:
                             #判断span类型
@@ -34,15 +33,11 @@ def recovery_pdfstrure():
                             html.write("<span style=\"font-family:{};font-size:{}pt\">".format(span["font"], span["size"]))
                             html.write(span["text"])
                             html.write("</span>")
-                        # html.write("</p>")
-                html.write("</div>")
+                        html.write("</a>")
+                html.write("</p>")
             html.write("</div>")
-
             # break
             #只执行一个block
-
-                # if block["type"]==0:
-                #     for line in block["lines"]:
 
 recovery_pdfstrure()
 def get_table(pdf_file):

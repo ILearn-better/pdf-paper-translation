@@ -8,7 +8,7 @@ from get_picture import extract_images,extract_images_to_save_into_png
 from get_other_font import find_other_font
 from tools_function import get_paper_path,get_one_page_span,get_all_page_span,draw_pdf1,draw_pdf2,get_block
 import json
-
+import re
 import pdfplumber
 from openpyxl import Workbook
 from PIL import Image
@@ -16,8 +16,8 @@ import cv2
 import numpy as np
 # global path
 # path =r"./media/Attention is all you need.pdf"
-# path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
-path =r"./media/TEST.pdf"
+path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
+# path =r"./media/TEST.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\Calibrating distribution models from PELVE.pdf"
 """
 可以写一个功能函数:

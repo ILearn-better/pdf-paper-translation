@@ -99,3 +99,5 @@ python 3.8.7
 3. 运行Github开源项目
 [EasyTrans-mac](https://github.com/Ding-Kyoma/EasyTrans-mac)
 [PP-Structure 文档分析](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/ppstructure/README_ch.md)
+**2023.07.08**
+>[paper-translator](https://github.com/flaribbit/paper-translator)
