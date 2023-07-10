@@ -16,9 +16,9 @@ import cv2
 import numpy as np
 # global path
 # path =r"./media/Attention is all you need.pdf"
-path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
+# path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
 # path =r"./media/TEST.pdf"
-# path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\Calibrating distribution models from PELVE.pdf"
+path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\Calibrating distribution models from PELVE.pdf"
 """
 可以写一个功能函数:
     自动收集所有文件当中函数，并添加到头head中，便于其他文件引用
