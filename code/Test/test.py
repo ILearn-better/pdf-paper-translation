@@ -8,6 +8,7 @@ def test():
     功能:测试statistics_of_font_size函数
     :return:
     """
+
     doc = fitz.open(head.path)
     record_most_account = []
     for i in range(doc.page_count):
@@ -80,7 +81,7 @@ def test5():
     import head
     span_,_ = head.Choose_TOC_span(head.path)
     head.draw_pdf1(span_,"Calibrating distribution models from PELVE")
-test5()
+# test5()
 
 def test6():
     """
@@ -169,3 +170,58 @@ def test9():
 对三个pdf文档进行提取other font
 绘制other font的效果并不太好,对于复杂文本的公式,表格等提取的很乱,失去了其关联性
 """
+def text10():
+    """检测分栏block的读取顺序"""
+    import head
+    doc = head.fitz.open(head.path)
+    page = doc[16]
+    blocks = page.get_text("dict")["blocks"]
+
+    name =0
+    rect =fitz.Rect(blocks[7]["bbox"])#通过改索引看变化
+    page.draw_rect(rect)
+
+    doc.save("检测分栏block的读取顺序"+"_"+str(name) + ".pdf")
+
+# text10()
+"""
+实验结果：block的提取是是从左到右，从上到下
+"""
+
+def text11():
+    """
+    测试一下为什么一些满足分段条件的段落却没分段
+    :return:
+    """
+    import head
+    from translate_and_shift_to_json import get_block_text,has_uppercase
+    data =head.get_main_text_block()
+    paragraph_block =data
+
+    block_num = 0
+    result = [""]
+    previous_block_paragraph = get_block_text(paragraph_block[block_num-1])
+    block=paragraph_block[block_num]
+
+    if block["type"]==0:
+        block_first_letter = block["lines"][0]["spans"][0]["text"][:]
+        p = get_block_text(block)
+        #
+        #判断首span text的首字母是否大写
+        #前一个block的末尾是否为句号结尾（这种也可能不是一段）
+        #下一个span的首字母是否为大写
+        #末尾span的span_x1与block_x1的差的绝对值大于block长度的半
+        if has_uppercase(block_first_letter) and previous_block_paragraph[-1]==".":
+            result.append(p)
+        else:
+            # print(result)
+            result[-1] +="  "+p+"  "
+
+    save_path ="translate_markdown"
+    with open(save_path+".txt",'w',encoding="utf-8") as file:
+        for i in range(len(result)):
+            file.write("第{}段:\n".format(i))
+            file.write(result[i])
+            file.write("\n")
+    return result
+text11()

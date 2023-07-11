@@ -1,0 +1,10 @@
+第0段:
+   Lead authors:    
+Victor Galaz  , Stockholm Resilience Centre, Stockholm University  
+Hannah Metzler  , Medical University of Vienna, Complexity Science Hub Vienna  
+Stefan Daume  , Stockholm Resilience Centre, Stockholm University  
+Andreas Olsson  , Department of Clinical Neurosciences, Karolinska Institutet   
+Björn Lindström  , Department of Clinical Neurosciences, Karolinska Institutet  
+Arvid Marklund,   Beijer Institute of Ecological Economics, Royal Swedish   
+Academy of Sciences  
+  

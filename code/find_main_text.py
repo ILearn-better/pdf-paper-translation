@@ -46,11 +46,11 @@ def find_main_text_font_size(path):
     for i in range(doc.page_count):
         font_size, _, _ = statistics_of_font_size(doc[i])
         record_most_account = record_most_account + list(font_size)
-    print("全文span总量:", len(record_most_account))
+    # print("全文span总量:", len(record_most_account))
     font_size_choice = sorted(dict(Counter(record_most_account)).items(), key=lambda x: x[1])[-1][0]
-    print("Counter:",Counter(record_most_account))
+    # print("Counter:",Counter(record_most_account))
     # 正文文本选择要设定一个阈值（经验判断可为-+2）
-    print("全文频率最高span size:", font_size_choice)
+    # print("全文频率最高span size:", font_size_choice)
     return font_size_choice
 
 # 找正文

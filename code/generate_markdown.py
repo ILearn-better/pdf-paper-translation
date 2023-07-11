@@ -21,7 +21,7 @@ def pdf_to_markdown(pdf_path, markdown_path):
             for block in text_dict["blocks"]:
                 if block["type"]==0:
                     for line in block["lines"]:
-                        for span in line["spans"]:
+                        for span in line["spans"]:#对于一些block就是span的可能会有重复
                             # print(span)
                             if span["size"]>main_text_size:
                                 md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>"+"\n")
@@ -56,9 +56,25 @@ def pdf_mainText_to_markdown(pdf_path, markdown_path):
                         md_file.write("<span  style=\"font-size: {}px;\">".format(span["size"])+span["text"]+"</span>")
                 md_file.write("\n"+"\n")
 # 提供 PDF 文件路径和输出 Markdown 文件路径
+
+def path_list():
+    import os
+    path_ = r"/output/Resume_md\简历\失败简历\失败简历"
+    p_list = []
+    for i in os.listdir(path_):
+        p_list.append(os.path.join(path_,i))
+    return p_list
+
+
 pdf_path = head.path
 markdown_path = "output.md"
-# 调用函数将 PDF 转换为 Markdown
 pdf_to_markdown(pdf_path, markdown_path)
+# pdf_path = path_list()
+# for i in pdf_path:
+# # 调用函数将 PDF 转换为 Markdown
+#     name = i.split("\\")[-1]
+#     # print(name)
+#     r_markdown_path = r"C:\Users\EDY\Desktop\project\pdf2md\code\Resume_md\简历\span效果\\"+name+"output.md"
+#     pdf_to_markdown(i, r_markdown_path)
 
 

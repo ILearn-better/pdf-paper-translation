@@ -17,6 +17,7 @@ import numpy as np
 # global path
 # path =r"./media/Attention is all you need.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\AI could create a .pdf"
+# path=r"C:\Users\EDY\Desktop\project\pdf2md\code\Resume_md\简历\失败简历\失败简历\【中级前端开发工程师 _ 深圳】李佳泰 3年.pdf"
 # path =r"./media/TEST.pdf"
 path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\Calibrating distribution models from PELVE.pdf"
 """
