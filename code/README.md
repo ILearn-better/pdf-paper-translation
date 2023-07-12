@@ -107,15 +107,23 @@ python 3.8.7
   利用pymysql通过MySQL命令调用数据
   将数据赋给结构类，写入txt文件
   
+
 **2023.07.11**
+
 - 文本分段
  采用正则匹配，进行文本合并的判别
- 具体:利用上一段的结尾字符和本段的起始字符作为段落判断依据，若小写-小写则合并，句号-大写则分段(至少要成句子)。
- 问题：1.有大写的人名跳出来影响分割；2.有其他span跳出来影响分割
- 一般有2-3段有这个问题
+  具体:利用上一段的结尾字符和本段的起始字符作为段落判断依据，若小写-小写则合并，句号-大写则分段(至少要成句子)。
+  问题：1.有大写的人名跳出来影响分割；2.有其他span跳出来影响分割
+  一般有2-3段有这个问题
 - 多栏判别
   用同一页的正文block的横纵坐标变化判别
 - 测试pdf中block的读取顺序(从左上到下，从右上到右下)
 
 >[版面恢复](https://gitee.com/paddlepaddle/PaddleOCR/blob/release/2.6/ppstructure/recovery/README_ch.md#%E7%AE%80%E4%BB%8B)
 >[paper-translator](https://github.com/flaribbit/paper-translator)
+
+**2023.07.12**
+
+问题：段落多元信息合并与结构输出还有些问题
+
+[Journal of Finance](https://www.scirp.org/journal/jfrm/?utm_campaign=8504943975_132097716414&utm_source=lixiaofang&utm_medium=adwords&gad=1&gclid=EAIaIQobChMIxtXV8oaIgAMV5gx7Bx10eA4yEAAYASAAEgKXefD_BwE)

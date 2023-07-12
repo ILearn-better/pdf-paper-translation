@@ -224,4 +224,58 @@ def text11():
             file.write(result[i])
             file.write("\n")
     return result
-text11()
+# text11()
+def text12():
+    """
+    检测分段成果
+        1.从block_result.txt中提取内容，在pdf上画图
+        2.从block_result.txt中提取内容，恢复段落结构
+    """
+    import head
+    from translate_and_shift_to_json import translate_and_shift_to_json3
+
+
+    paragraph = translate_and_shift_to_json3()#拿分好的段落数据
+    # print(paragraph)
+
+    doc = head.fitz.open(head.path)
+    with open(r"./show.html","w",encoding="utf-8") as html:
+        for block_index in range(len(paragraph)):
+            if type(paragraph[block_index])==list:
+                print(paragraph[block_index])
+                for j in paragraph[block_index]:
+                    print(type(j))
+                    if type(j)==str:
+                        print(j)
+                    print(j)
+                    page_size = doc[j["page"]].rect
+
+                    html.write("<div id=\"{}\" style=\"width:{}.0pt;height:{}.0pt\">".format(j["page"], page_size[2], page_size[3]))
+                    html.write("<p style=\"top: {}pt;left:{}pt;\">".format(j["bbox"][1], j["bbox"][0]))
+                    html.write("<span>")
+
+
+                    html.write(head.get_block_text(j))
+
+                    html.write("</span>")
+                    html.write("</p>")
+                    html.write("</div>")
+
+            else:
+                tt = paragraph[block_index]
+                # print(tt)
+                # print(len(tt))
+                page_size = doc[tt["page"]].rect
+
+                html.write("<div id=\"{}\" style=\"width:{}.0pt;height:{}.0pt\">".format(tt["page"], page_size[2],
+                                                                                         page_size[3]))
+                html.write("<p style=\"top: {}pt;left:{}pt;\">".format(tt["bbox"][1], tt["bbox"][0]))
+                html.write("<span>")
+                print(head.get_block_text(tt))
+                html.write(head.get_block_text(tt))
+
+                html.write("</span>")
+                html.write("</p>")
+                html.write("</div>")
+
+text12()

@@ -107,3 +107,19 @@ def get_block(path):
             # print(block)
             all_page_block.append(block)
     return all_page_block
+
+
+def get_block_text(block):
+    """
+    功能:
+    带入正文block，返回内容文本
+    :return:字符串
+    """
+    p = " "
+    # print(block)
+    for line in block["lines"]:
+        for span in line["spans"]:
+            p = p+span["text"]
+            # p = p+span["text"]+"  "
+        # p+="\n"
+    return p
