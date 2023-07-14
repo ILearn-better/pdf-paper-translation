@@ -1,5 +1,16 @@
 # 论文分析翻译工具开发
 
+## 项目结构与说明
+
+```
+code文件夹:当前项目根目录
+    media:放静态样本文件
+    output:放整理后的输出文件，一般输出文件与输出该文件的py文件同级。
+    test:放测试脚本和测试输出
+```
+
+## 开发日志
+
 **2023.06.28**
 
 1.配置环境:
@@ -110,14 +121,20 @@ python 3.8.7
 
 **2023.07.11**
 
-- 文本分段
- 采用正则匹配，进行文本合并的判别
-  具体:利用上一段的结尾字符和本段的起始字符作为段落判断依据，若小写-小写则合并，句号-大写则分段(至少要成句子)。
-  问题：1.有大写的人名跳出来影响分割；2.有其他span跳出来影响分割
-  一般有2-3段有这个问题
-- 多栏判别
-  用同一页的正文block的横纵坐标变化判别
-- 测试pdf中block的读取顺序(从左上到下，从右上到右下)
+- 文本分段  
+ 采用正则匹配，进行文本合并的判别  
+  具体:利用上一段的结尾字符和本段的起始字符作为段落判断依据，若小写-小写则合并，句号-大写则分段(至少要成句子)。  
+  问题:    
+  
+  1.有大写的人名跳出来影响分割；  
+  
+  2.有其他span跳出来影响分割  
+  一般有2-3段有这个问题  
+  
+- 多栏判别  
+  用同一页的正文block的横纵坐标变化判别  
+  
+- 测试pdf中block的读取顺序(从左上到下，从右上到右下)  
 
 >[版面恢复](https://gitee.com/paddlepaddle/PaddleOCR/blob/release/2.6/ppstructure/recovery/README_ch.md#%E7%AE%80%E4%BB%8B)
 >[paper-translator](https://github.com/flaribbit/paper-translator)
@@ -126,4 +143,11 @@ python 3.8.7
 
 问题：段落多元信息合并与结构输出还有些问题
 
-[Journal of Finance](https://www.scirp.org/journal/jfrm/?utm_campaign=8504943975_132097716414&utm_source=lixiaofang&utm_medium=adwords&gad=1&gclid=EAIaIQobChMIxtXV8oaIgAMV5gx7Bx10eA4yEAAYASAAEgKXefD_BwE)
+> [Journal of Finance](https://www.scirp.org/journal/jfrm/?utm_campaign=8504943975_132097716414&utm_source=lixiaofang&utm_medium=adwords&gad=1&gclid=EAIaIQobChMIxtXV8oaIgAMV5gx7Bx10eA4yEAAYASAAEgKXefD_BwE)
+
+**2023.07.13**
+
+[(15条消息) 音频文件按照正常语句，断句拆分的处理方法_split_on_silence_watfe的博客-CSDN博客](https://blog.csdn.net/watfe/article/details/80284242)
+
+2023.07.14
+

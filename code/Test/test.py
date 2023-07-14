@@ -241,35 +241,46 @@ def text12():
     doc = head.fitz.open(head.path)
     with open(r"./show.html","w",encoding="utf-8") as html:
         for block_index in range(len(paragraph)):
-            if type(paragraph[block_index])==list:
-                print(paragraph[block_index])
+            print(len(paragraph[block_index]))
+            # if type(paragraph[block_index])==list:
+            if len(paragraph[block_index]) >=2:
+                # print(paragraph[block_index])
                 for j in paragraph[block_index]:
-                    print(type(j))
-                    if type(j)==str:
-                        print(j)
-                    print(j)
-                    page_size = doc[j["page"]].rect
+                    print("=" * 10)
+                    # print(type(j))
+                    # if type(j)==str:
+                    #     print(j)
+                    #     print("="*10)
+                    # break
 
-                    html.write("<div id=\"{}\" style=\"width:{}.0pt;height:{}.0pt\">".format(j["page"], page_size[2], page_size[3]))
-                    html.write("<p style=\"top: {}pt;left:{}pt;\">".format(j["bbox"][1], j["bbox"][0]))
+                    print("paragraph大于2:",j)
+                    print("=" * 10)
+
+                    page_size = doc[j["page"]].rect
+                    #
+                    html.write("<div id=\"{}\" style=\"width:{}.0pt;height:{}.0pt;position:relative\">".format(j["page"], page_size[2], page_size[3]))
+                    html.write("<p style=\"position:absolute;top:{}pt;left:{}pt;\">".format(j["bbox"][1], j["bbox"][0]))
                     html.write("<span>")
 
 
-                    html.write(head.get_block_text(j))
+                    html.write(head.get_block_text(j))#可以细化
 
                     html.write("</span>")
                     html.write("</p>")
                     html.write("</div>")
 
             else:
-                tt = paragraph[block_index]
+                tt = paragraph[block_index][0]
+                # print("-"*20)
                 # print(tt)
+                # print("-"*20)
+
                 # print(len(tt))
                 page_size = doc[tt["page"]].rect
 
-                html.write("<div id=\"{}\" style=\"width:{}.0pt;height:{}.0pt\">".format(tt["page"], page_size[2],
+                html.write("<div id=\"{}\" style=\"position: relative;width:{}.0pt;height:{}.0pt\">".format(tt["page"], page_size[2],
                                                                                          page_size[3]))
-                html.write("<p style=\"top: {}pt;left:{}pt;\">".format(tt["bbox"][1], tt["bbox"][0]))
+                html.write("<p style=\"position:absolute;top: {}pt;left:{}pt;\">".format(tt["bbox"][1], tt["bbox"][0]))
                 html.write("<span>")
                 print(head.get_block_text(tt))
                 html.write(head.get_block_text(tt))
@@ -278,4 +289,56 @@ def text12():
                 html.write("</p>")
                 html.write("</div>")
 
-text12()
+# text12()
+"""
+另起思路
+"""
+def text13():
+    """
+    检测分段成果
+        1.从block_result.txt中提取内容，在pdf上画图
+        2.从block_result.txt中提取内容，恢复段落结构
+    """
+    import head
+    from translate_and_shift_to_json import translate_and_shift_to_json3
+    paragraph = translate_and_shift_to_json3()#拿分好的段落数据
+    # print(paragraph)
+    #展开paragraph
+    blocks= []
+    for i in paragraph:
+        if len(i)>1:
+            for j in i:
+                blocks.append(j)
+        else:
+            blocks.append(i[0])
+    doc = head.fitz.open(head.path)
+
+    with open("问题_覆盖.html",'w',encoding="utf-8") as file:
+        file.write("<!DOCTYPE html>")
+        file.write("<html>")
+        file.write("<head>")
+        file.write("</head>")
+
+        for i in range(doc.page_count):
+            page_size = doc[i].rect
+            file.write("<div id=\"{}\" style=\" position: relative;width: {}px;height: {}px;margin: 0px; border:1px solid #000\">".format(str(i),page_size[2]*2,page_size[3]*2))
+            for block in blocks:
+                if block["page"]==i:
+                    x0,y0,x1,y1 =block["bbox"]
+                    file.write("<div style=\"font-size:10;position: absolute;top: {}px;left: {}px;width:{}px;height:{}px;word-wrap:break-word;\">".format(y0*2,x0*2,(x1-x0)*2,(y1-y0)*2))
+                    textt = head.get_block_text(block)
+                    file.write("<p style=\"font-size=10\">")
+                    file.write(textt)
+                    file.write("</p>")
+
+                    file.write("</div>")
+                else:
+                    continue
+            file.write("</div>")
+
+        file.write("</html>")
+
+text13()
+#字体是十号
+# 一页一页测
+

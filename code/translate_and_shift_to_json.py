@@ -159,7 +159,7 @@ def translate_and_shift_to_json2():
             file.write(result[i])
             file.write("\n")
     return result
-# translate_and_shift_to_json2()
+translate_and_shift_to_json2()
 
 
 
@@ -174,7 +174,9 @@ def translate_and_shift_to_json3():
     paragraph_block =data
     result = [""]
 
-    text_block =[[]]
+    # text_block =[[]]
+    text_block =[()]
+
     for block_num in range(0,len(paragraph_block)):#一般第一页不是正文
         """
         获取上一个block的所有文本，判断是否由句号结尾
@@ -200,13 +202,13 @@ def translate_and_shift_to_json3():
                 # text_conbined_block_cell = [result[-1],block]
                 # text_block.append(text_conbined_block_cell)
 
-                text_block[-1]+=block
+                text_block[-1]+=(block,)
             else:
                 # print(result)
                 # result[-1] +=" "+p
                 result.append(p)
 
-                text_block.append([block,])
+                text_block.append((block,))
 
     return text_block
     #
@@ -218,6 +220,6 @@ def translate_and_shift_to_json3():
     #         file.write(result[i])
     #         file.write("\n")
     # return result
-with open("block_result.txt","w",encoding="utf-8") as file:
-    file.write(str(translate_and_shift_to_json3()))
+# with open("block_result.txt","w",encoding="utf-8") as file:
+#     file.write(str(translate_and_shift_to_json3()))
     #文档内部有重复语句
