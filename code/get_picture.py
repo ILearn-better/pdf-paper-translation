@@ -52,21 +52,23 @@ def extract_images_to_save_into_png(pdf_path,save_pic):
                 img = Image.frombytes("RGB", [pixmap.width, pixmap.height], pixmap.samples)
                 cropped_pix = img.crop(coordinate["bbox"])
                 save_name=f"In page {page_index} imagen {index}"
-                save_path=os.path.join(os.getcwd(),"output","论文","paper1","pic",save_name+'.png')
+                save_path=os.path.join(os.getcwd(),"output","paper","paper1","pic",save_name+'.png')
                 if save_pic:
                     cropped_pix.save(save_path)
 
                 save_pic_dict={
                     "save_path":save_path,
-                    "coordinate":coordinate["bbox"],
-                    "page_num":page_index,
+                    "bbox":coordinate["bbox"],
+                    "page":page_index,
+                    "type":"image"
                 }
                 picture_list.append(save_pic_dict)
 
         else:
-            print("[INFO] No images found on page", page_index)
+            # print("[INFO] No images found on page", page_index)
+            pass
     return picture_list
-# picture_list = extract_images_to_save_into_png(head.path,0)
+# picture_list = extract_images_to_save_into_png(head.path,1)
 # print(picture_list)
 # print(len(picture_list))
 """

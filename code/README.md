@@ -141,13 +141,23 @@ python 3.8.7
 
 **2023.07.12**
 
-问题：段落多元信息合并与结构输出还有些问题
+- 段落多元信息合并与结构输出------代码构思、实验、整理
 
 > [Journal of Finance](https://www.scirp.org/journal/jfrm/?utm_campaign=8504943975_132097716414&utm_source=lixiaofang&utm_medium=adwords&gad=1&gclid=EAIaIQobChMIxtXV8oaIgAMV5gx7Bx10eA4yEAAYASAAEgKXefD_BwE)
 
 **2023.07.13**
 
-[(15条消息) 音频文件按照正常语句，断句拆分的处理方法_split_on_silence_watfe的博客-CSDN博客](https://blog.csdn.net/watfe/article/details/80284242)
+- 段落多元信息合并与结构输出------调参
 
-2023.07.14
+- 音频处理调研
 
+> [ 音频文件按照正常语句，断句拆分的处理方法](https://blog.csdn.net/watfe/article/details/80284242)
+
+**2023.07.14**
+
+- 音频处理代码调试运行
+- 图片信息结构输出到html---------构思、实验、整理、调参
+
+> [Linux安装conda ](https://zhuanlan.zhihu.com/p/489499097)
+
+> [ 远程在服务器上跑程序jupyter使用_服务器使用jupyter_](https://blog.csdn.net/fs1341825137/article/details/109683965)
