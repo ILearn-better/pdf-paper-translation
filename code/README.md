@@ -161,3 +161,9 @@ python 3.8.7
 > [Linux安装conda ](https://zhuanlan.zhihu.com/p/489499097)
 
 > [ 远程在服务器上跑程序jupyter使用_服务器使用jupyter_](https://blog.csdn.net/fs1341825137/article/details/109683965)
+
+**2023.07.14**
+
+- 1.音频分割
+
+- 2.接翻译接口

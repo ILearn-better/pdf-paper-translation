@@ -51,10 +51,22 @@ def extract_images_to_save_into_png(pdf_path,save_pic):
                 # print(pixmap.samples)
                 img = Image.frombytes("RGB", [pixmap.width, pixmap.height], pixmap.samples)
                 cropped_pix = img.crop(coordinate["bbox"])
+
+
+
                 save_name=f"In page {page_index} imagen {index}"
-                save_path=os.path.join(os.getcwd(),"output","paper","paper1","pic",save_name+'.png')
+                save_path=os.path.join(os.getcwd(),"output","paper","paper1","pic",save_name+'.png')#注意修改
                 if save_pic:
-                    cropped_pix.save(save_path)
+                    try:
+                        cropped_pix.save(save_path)
+                    except:
+                        continue
+                        # print("+++" * 7)
+                        # print(cropped_pix)
+                        # arr_ = head.np.array(cropped_pix)
+                        # print(arr_.shape)
+                        # head.plt.imshow(arr_)
+                        # head.plt.show()
 
                 save_pic_dict={
                     "save_path":save_path,

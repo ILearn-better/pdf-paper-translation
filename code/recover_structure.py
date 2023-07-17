@@ -20,13 +20,16 @@ def recover_structure():
     #展开paragraph
     blocks= []
     for i in paragraph:
-        if len(i)>1:
+        if len(i)>=1:
             for j in i:
                 blocks.append(j)
         else:
-            blocks.append(i[0])
-
-    pic_dict_list = extract_images_to_save_into_png(head.path,0)
+            # print(len(i))
+            # print(i)
+            # if len(i)!=0:
+            #     blocks.append(i)
+            continue
+    pic_dict_list = extract_images_to_save_into_png(head.path,1)
     blocks = blocks+pic_dict_list
 
     doc = head.fitz.open(head.path)
@@ -41,9 +44,10 @@ def recover_structure():
             file.write("<div id=\"{}\" style=\" position: relative;width: {}px;height: {}px;margin: 0px; border:1px solid #000\">".format(str(i),page_size[2]*2,page_size[3]*2))
             for block in blocks:
                 # print(block)
+                # print(len(block))
                 if block["page"]==i:
                     x0, y0, x1, y1 = block["bbox"]
-                    rate =2
+                    rate =2.0
 
                     if block["type"]=="image":
 
