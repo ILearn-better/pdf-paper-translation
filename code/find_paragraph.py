@@ -42,6 +42,7 @@ def get_block(path):
     返回值:
         全文block字典list
     """
+
     doc = fitz.open(path)
     all_page_block = []
     for i in range(doc.page_count):

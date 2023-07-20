@@ -17,8 +17,8 @@ import matplotlib.pyplot as plt
 # global path
 
 # path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\Financial Sector Taxation.pdf"
-# path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\AI could create a .pdf"
-path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\jfrm_2023021011574603.pdf"
+path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\AI could create a .pdf"
+# path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\jfrm_2023021011574603.pdf"
 # path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\Financial Sector Taxation.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\When-can-the-market-identify-old-news-_2023_Journal-of-Financial-Economics.pdf"
 """
