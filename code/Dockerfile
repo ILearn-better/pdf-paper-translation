@@ -15,8 +15,8 @@ COPY . .
 EXPOSE 5008
 
 # 安装vim
-RUN apt-get update
-RUN apt-get python3-opencv
+RUN apt-get update && \
+    apt-get install -y python-opencv
 
 # 安装requirements.txt中指定的依赖包
 RUN pip install --no-cache-dir -r requirement_modify.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
