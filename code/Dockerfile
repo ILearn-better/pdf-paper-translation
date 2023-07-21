@@ -21,4 +21,5 @@ RUN apt-get update && \
 # 安装requirements.txt中指定的依赖包
 RUN pip install --no-cache-dir -r requirement_modify.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-
+#运行Flask应用程序
+CMD ["python","/interface/InterFace.py"]
