@@ -43,6 +43,10 @@ def translate():
     """
     import head
     from translate_and_shift_to_json import translate_and_shift_to_json3
+    #检测是否接口有打开
+    if interface_to_dict(" ")==False:return False
+
+
     text_block = translate_and_shift_to_json3()
     # print(text_block)
     text_block_Ch = []
@@ -118,6 +122,10 @@ def translate0():
     """
     import head
     from translate_and_shift_to_json import translate_and_shift_to_json3
+    #检测是否接口有打开
+    # if interface_to_dict(" ")==False:return False
+    #
+
     text_block = translate_and_shift_to_json3()
     # print(text_block)
     save_p = head.os.path.join(head.os.getcwd(),"media","output","translation.txt")
@@ -172,10 +180,12 @@ if __name__=="__main__":
     # text = "It is becoming increasingly clear that misinformation is taking its toll on public opinion on climate and sustainability issues as well."
     # text=""
     # dd = interface_to_dict(text)
+    # print(dd)
+    pass
     # print(dd["data"]["answers"][0]["answer_content"])
     import time
-    start = time.time()
-    end =time.time()
-    text_block_Ch = translate0()
-    print(end-start)
-    print(text_block_Ch)
+    # start = time.time()
+    # end =time.time()
+    # text_block_Ch = translate0()
+    # print(end-start)
+    # print(text_block_Ch)

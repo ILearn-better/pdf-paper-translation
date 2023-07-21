@@ -53,7 +53,7 @@ def recover_structure_English():
 
                     if block["type"]=="image":
 
-                        show_path=head.os.path.join("./output/paper/paper1/pic",head.os.path.basename(block["save_path"]))
+                        show_path=head.os.path.join(head.os.getcwd(),"other_out_media","pic",head.os.path.basename(block["save_path"]))
                         file.write("<img id=\"{}\" alt=\"pic\" src=\"{}\" style=\"position: absolute;top: {}px;left: {}px;width:{}px;height:{}px;\"/>".format(str(i),show_path,y0*rate,x0*rate,(x1-x0)*rate,(y1-y0)*rate))
 
 
@@ -78,7 +78,7 @@ def recover_structure_Chinese():
         恢复段落在pdf中位置结构
         恢复图片在pdf中位置结构
     """
-
+    if type(translate())==False:return False
     paragraph = translate()#拿分好的段落数据
     # print(paragraph)
     #展开paragraph
