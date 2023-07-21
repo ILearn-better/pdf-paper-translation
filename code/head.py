@@ -1,5 +1,7 @@
 import os
 import fitz
+import sys
+
 from collections import Counter
 from find_main_text import statistics_of_font_size,find_main_text_font_size,find_main_text
 from find_TOC import find_fontsize_bigger_than_main_fontsize,Choose_TOC_span,start_from_first_biggest_number,filter_TOC_span,recovery_order_via_dict
@@ -21,10 +23,12 @@ path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\AI could create a 
 # path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\jfrm_2023021011574603.pdf"
 # path=r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\Financial Sector Taxation.pdf"
 # path =r"C:\Users\EDY\Desktop\project\pdf2md\code\media\finance\When-can-the-market-identify-old-news-_2023_Journal-of-Financial-Economics.pdf"
+
 """
 可以写一个功能函数:
     自动收集所有文件当中函数，并添加到头head中，便于其他文件引用
 """
+
 Json_save_path = r"C:\Users\EDY\Desktop\project\pdf2md\code\output\pdf_to_json.json"
 
 
