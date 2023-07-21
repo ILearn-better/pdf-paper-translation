@@ -66,9 +66,9 @@ def path_list():
     return p_list
 
 
-pdf_path = head.path
-markdown_path = "output.md"
-pdf_to_markdown(pdf_path, markdown_path)
+# pdf_path = head.path
+# markdown_path = "output.md"
+# pdf_to_markdown(pdf_path, markdown_path)
 # pdf_path = path_list()
 # for i in pdf_path:
 # # 调用函数将 PDF 转换为 Markdown

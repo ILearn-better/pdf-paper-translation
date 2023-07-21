@@ -150,7 +150,7 @@ def write_paragraph_into_txt():
                 # result[-1] +=" "+p
                 result.append(p)
     #去重重复字符串
-    save_path =head.os.path.join(head.os.getcwd(),"media","translate_markdown")
+    save_path =head.os.path.join(head.os.getcwd(),"media","output","translate_markdown")
     with open(save_path+".txt",'w',encoding="utf-8") as file:
         for i in range(len(result)):
             file.write("第{}段:\n".format(i))

@@ -34,7 +34,8 @@ def recover_structure_English():
     blocks = blocks+pic_dict_list
 
     doc = head.fitz.open(head.path)
-    with open("问题_覆盖.html",'w',encoding="utf-8") as file:
+    s_p = head.os.path.join(head.os.getcwd(),"media","output","英文样式还原.html")
+    with open(s_p,'w',encoding="utf-8") as file:
         file.write("<!DOCTYPE html>")
         file.write("<html>")
         file.write("<head>")
@@ -96,7 +97,10 @@ def recover_structure_Chinese():
     blocks = blocks+pic_dict_list
 
     doc = head.fitz.open(head.path)
-    with open("翻译好的.html",'w',encoding="utf-8") as file:
+
+    s_p = head.os.path.join(head.os.getcwd(),"media","output","翻译好的.html")
+
+    with open(s_p,'w',encoding="utf-8") as file:
         file.write("<!DOCTYPE html>")
         file.write("<html>")
         file.write("<head>")
@@ -133,5 +137,5 @@ def recover_structure_Chinese():
 
         file.write("</html>")
 
-recover_structure_Chinese()
+# recover_structure_Chinese()
 #字体是十号

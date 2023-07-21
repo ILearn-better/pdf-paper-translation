@@ -55,12 +55,12 @@ def extract_images_to_save_into_png(pdf_path,save_pic):
 
 
                 save_name=f"In page {page_index} imagen {index}"
-                save_path=os.path.join(os.getcwd(),"output","paper","paper1","pic",save_name+'.png')#注意修改
+                save_path=os.path.join(os.getcwd(),"media","other_out_media","pic",save_name+'.png')#注意修改
                 if save_pic:
                     try:
                         cropped_pix.save(save_path)
                     except:
-                        print(cropped_pix.shape)
+                        # print(cropped_pix.shape)
                         continue
                         # print("+++" * 7)
                         # print(cropped_pix)
