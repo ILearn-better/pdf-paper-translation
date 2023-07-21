@@ -136,7 +136,6 @@ def pdf2md():
             f.save(save_p)
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
             save_1 = head.os.path.join(head.os.getcwd(),"media","output","output.md")
-
             pdf_to_markdown(head.path,save_1)
             result_file_path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/output")))
             return send_file(result_file_path, as_attachment=True)
