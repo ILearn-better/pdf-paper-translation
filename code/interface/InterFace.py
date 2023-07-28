@@ -7,10 +7,66 @@ from translate_and_shift_to_json import write_paragraph_into_txt
 from flask import Flask, render_template, request,jsonify,send_file,make_response,Response,abort
 from werkzeug.utils import secure_filename
 from recover_structure import recover_structure_English,recover_structure_Chinese
-
-
 app = Flask(__name__)
-path = ""
+
+@app.route('/pdf_path',methods=['GET', 'POST'])
+def pdf_path():
+    """
+    上传文件并保存在本地
+    """
+    if request.method == 'POST':
+        f = request.files['file']
+        save_p = head.os.path.join("media", "input", secure_filename(f.filename))
+        if head.os.path.basename(save_p) == "":
+            """检测有无上传文件"""
+            return jsonify({
+                "status": 1,
+                "msg": "没传文件"
+            })
+        else:
+            f.save(save_p)
+            head.path = save_p
+            return jsonify({
+                "status": 0,
+                "msg": "文件上传成功",
+                "data":save_p
+            })
+
+    else:
+        return jsonify({
+            "status": 0,
+            "msg": "没接收到post请求"
+        })
+
+# @app.route('/pdf_path',methods=['GET', 'POST'])
+# def pdf_translation():
+#     """
+#     检测有无上传的文件
+#         有:处理
+#         无：报错
+#     """
+#     if head.os.path.isfile(head.path):
+#         return jsonify({
+#             "status":0,
+#             "":
+#         })
+#
+#     pass
+
+
+def test_folder():
+    """
+    检测是否存在output文件夹
+    """
+    path = head.os.path.join(head.os.getcwd(),"media","output")
+    if not head.os.path.isfile(path):
+        # print("not this file.test if exits this folder")
+        if not head.os.path.exists(path):
+            # print("文件夹不存在，代创建。。")
+            head.os.mkdir(path)
+            # print("文件夹创成功。")
+        else:
+            print("文件夹存在")
 
 @app.route('/')
 def index():
@@ -27,17 +83,22 @@ def pdf2html_dont_translate():
         save_p = head.os.path.join(head.os.getcwd(),"media","input",secure_filename(f.filename))
         if head.os.path.basename(save_p)=="":
             """检测有无上传文件"""
-            return make_response(404)
+            return jsonify({
+                "status":1,
+                "msg":"没传文件"
+            })
         else:
             f.save(save_p)
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
             recover_structure_English()
             result_file_path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/output")))
             return send_file(result_file_path, as_attachment=True)
-            # return str(filename)
 
     else:
-        return render_template("index.html")
+        return jsonify({
+                "status":0,
+                "msg":"没接收到post请求"
+            })
 
 
 @app.route('/pdf2html_translated', methods=['GET', 'POST'])
@@ -50,7 +111,10 @@ def pdf2html_translated():
         save_p = head.os.path.join(head.os.getcwd(),"media","input",secure_filename(f.filename))
         if head.os.path.basename(save_p)=="":
             """检测有无上传文件"""
-            return make_response(404)
+            return jsonify({
+                "status": 1,
+                "msg": "没传文件"
+            })
         else:
             f.save(save_p)
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
@@ -58,7 +122,10 @@ def pdf2html_translated():
             result_file_path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/output")))
             return send_file(result_file_path, as_attachment=True)
     else:
-        return render_template("index.html")
+        return jsonify({
+                "status":0,
+                "msg":"没接收到post请求"
+            })
 
 
 @app.route('/pdf_paragraph_to_txt', methods=['GET', 'POST'])
@@ -72,8 +139,10 @@ def pdf_paragraph_to_txt():
         save_p = head.os.path.join(head.os.getcwd(),"media","input",secure_filename(f.filename))
         if head.os.path.basename(save_p)=="":
             """检测有无上传文件"""
-            abort(400, description='缺少必要的字段：name')
-            return make_response(404)
+            return jsonify({
+                "status":1,
+                "msg":"没传文件"
+            })
         else:
             f.save(save_p)
             # data = {
@@ -85,12 +154,16 @@ def pdf_paragraph_to_txt():
             #     }
             # }
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
+
             write_paragraph_into_txt()
             result_file_path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/output")))
             return send_file(result_file_path, as_attachment=True)
 
     else:
-        return render_template("index.html")
+        return jsonify({
+                "status":0,
+                "msg":"没接收到post请求"
+            })
 
 #     需要添加逻辑：用户关闭页面就要把文件全部清除
 
@@ -106,7 +179,10 @@ def pdf_paragraph_to_translationTxT():
         save_p = head.os.path.join(head.os.getcwd(),"media","input",secure_filename(f.filename))
         if head.os.path.basename(save_p)=="":
             """检测有无上传文件"""
-            return make_response(404)
+            return jsonify({
+                "status":1,
+                "msg":"没传文件"
+            })
         else:
             f.save(save_p)
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
@@ -115,14 +191,17 @@ def pdf_paragraph_to_translationTxT():
             return send_file(result_file_path, as_attachment=True)
 
     else:
-        return render_template("index.html")
+        return jsonify({
+                "status":0,
+                "msg":"没接收到post请求"
+            })
 
 
 @app.route('/pdf2md', methods=['GET', 'POST'])
 def pdf2md():
 
     """
-    ----传入pdf,输出markdown
+    传入pdf,输出markdown
     """
     from generate_markdown import pdf_to_markdown
 
@@ -131,17 +210,25 @@ def pdf2md():
         save_p = head.os.path.join(head.os.getcwd(),"media","input",secure_filename(f.filename))
         if head.os.path.basename(save_p)=="":
             """检测有无上传文件"""
-            return make_response(404)
+            return jsonify({
+                "status":1,
+                "msg":"没传文件"
+            })
         else:
             f.save(save_p)
             head.path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/input")))
             save_1 = head.os.path.join(head.os.getcwd(),"media","output","output.md")
+
             pdf_to_markdown(head.path,save_1)
+
             result_file_path = head.os.path.join(head.os.getcwd(), get_latest_file(head.os.path.join("media/output")))
             return send_file(result_file_path, as_attachment=True)
 
     else:
-        return render_template("index.html")
+        return jsonify({
+                "status":0,
+                "msg":"没接收到post请求"
+            })
 
 def get_latest_file(path):
     """
@@ -157,6 +244,15 @@ def get_latest_file(path):
     return files[0] if files else None
 
 
+
+def test_serve_status():
+    pass
+
+
+
+
+
 if __name__ == '__main__':
-    app.run(debug=False,host="0.0.0.0",port=5008)
+    test_folder()
+    app.run(debug=True,host="0.0.0.0",port=5008)
 # https://www.daehee.com/werkzeug-console-pin-exploit/
