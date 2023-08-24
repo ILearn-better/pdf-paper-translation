@@ -1,0 +1,6 @@
+[2023-08-24 09:38:30,266] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 09:38:30,266] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 09:38:47,080] INFO in pdftopdf: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/test/pdftopdf.py,文本块数量:4
+[2023-08-24 09:50:02,801] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 09:50:02,801] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 09:50:18,565] INFO in pdftopdf: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/test/pdftopdf.py,文本块数量:4

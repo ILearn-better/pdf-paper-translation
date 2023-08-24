@@ -1,0 +1,56 @@
+[2023-08-24 11:08:15,738] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:准备获取单页最多的font size.........
+[2023-08-24 11:08:15,746] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:已经获取单页最多的font size
+[2023-08-24 11:08:15,746] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:已生成的new_translated_page_block
+[2023-08-24 11:08:15,746] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:准备进行格式恢复... ...
+[2023-08-24 11:08:15,747] INFO in one_page_experience: 翻译后的HTML输出完成，路径为:media/HTMLorPNG_folder/inchat_1/Chrecover.html
+[2023-08-24 11:08:15,747] INFO in one_page_experience: page_width:612,page_height:792
+[2023-08-24 11:08:18,081] INFO in one_page_experience: 翻译后的HTML to PDF转换完成,路径为:media/outputPDF_folder/inchat_1/121212.pdf_1_Chrecover.pdf
+[2023-08-24 11:08:18,149] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:18,309] INFO in one_page_experience: 当前文本页数:2，translated_str:黑盒模型链接
+[2023-08-24 11:08:18,309] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:19,006] INFO in one_page_experience: 当前文本页数:2，translated_str:在这个部分，我们讨论了将黑盒模型链接起来的动机，并提出了模型链接的理论分析、架构设计、集成和训练方法
+[2023-08-24 11:08:19,007] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:19,110] INFO in one_page_experience: 当前文本页数:2，translated_str:激励学习
+[2023-08-24 11:08:19,110] INFO in one_page_experience: 当前文本页数:2，当前文本长度超过50个词
+[2023-08-24 11:08:26,867] INFO in one_page_experience: 当前文本页数:2，translated_str:在为不同的任务训练机器学习模型时，理想的模型学习的表示应该是独立的且相互独立的（Hjelm等人，2019年），即每个模型只学习其目标任务的语义。然而，由于数据和模型的复杂性不匹配，机器学习过程容易出现“过拟合”（Song和Shmatikov，2020年），这意味着意外的语义被编码在学习的表示中。此外，输出之间存在语义相关性不同的任务和不同的模型可能会关注相同的内容，例如图像中的相同区域。例如，在图1a中，基于G-CAM（Selvaraju等人）的模型和基于注意力机制的模型可能会关注图像中的相同区域。2020年我们绘制了YOLO-V3 (Redmon and Farhadi 2018)对象检测器和ResNet50 (He et al 2016)的注意力热图场景分类器在相同的图像上进行分类，它们的注意力区域有很大的重叠。我们对注意力热图重叠比与模型链接性能之间的相关性进行了实验。例如，从场景分类器到对象检测器，如图1b所示，模型链接的准确性显然与注意力热图重叠比((Mapsource ∧ Maptarget)/Maptarget)有关在一定程度上，模型学习到的关联链接与语义注意力相似。这种“过学习”特性以及输出之间的潜在语义相关性使得从相同的或对齐的输入空间到不同的输出空间的映射可转移（Tan et al. 2018）
+[2023-08-24 11:08:26,867] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:27,058] INFO in one_page_experience: 当前文本页数:2，translated_str:黑盒输出和中间表示
+[2023-08-24 11:08:27,059] INFO in one_page_experience: 当前文本页数:2，当前文本长度超过50个词
+[2023-08-24 11:08:32,787] INFO in one_page_experience: 当前文本页数:2，translated_str:一个关键的设计原则是，我们只使用源模型的黑盒输出来进行模型链接。 已有的研究表明，通过微调最后几层（Guo et al, 2019），中间表示可以用于预测其他不同的任务。 然而，在实际应用中，我们经常需要处理部署的模型，这些模型只提供黑盒推理API。 与中间表示相比，下游的黑盒输出具有较弱的表示能力。但是最近的工作（Yuan et al. 2021）表明，对于一般学习任务，这种策略并不总是有效的。 2020a)给定相同的输入，执行模型的输出是未执行模型调度的有效提示。这一洞察是，多个任务具有相同输入时黑盒模型输出之间的相关性更明确甚至更强。我们的实验结果还表明，使用相同量的训练数据，黑盒模型链接的准确性高于知识蒸馏方法（见图2）和多任务学习方法考虑到更好的实用性以及满意的准确性，我们选择黑盒输出而不是中间表示来链接机器学习模型
+[2023-08-24 11:08:32,787] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第6个block
+[2023-08-24 11:08:32,788] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第7个block
+[2023-08-24 11:08:32,788] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第8个block
+[2023-08-24 11:08:32,789] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:32,873] INFO in one_page_experience: 当前文本页数:2，translated_str:Object
+[2023-08-24 11:08:32,873] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,087] INFO in one_page_experience: 当前文本页数:2，translated_str:Scene
+[2023-08-24 11:08:33,087] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,168] INFO in one_page_experience: 当前文本页数:2，translated_str:airplanelivingroomcourt
+[2023-08-24 11:08:33,169] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第12个block
+[2023-08-24 11:08:33,169] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第13个block
+[2023-08-24 11:08:33,170] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,图片在文章位置路径:第2页，第14个block
+[2023-08-24 11:08:33,170] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,381] INFO in one_page_experience: 当前文本页数:2，translated_str:planebedperson
+[2023-08-24 11:08:33,381] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,680] INFO in one_page_experience: 当前文本页数:2，translated_str:(a) 对象和场景模型的注意力热图
+[2023-08-24 11:08:33,681] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,806] INFO in one_page_experience: 当前文本页数:2，translated_str:平均准确率
+[2023-08-24 11:08:33,806] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,811] INFO in one_page_experience: 当前文本页数:2，translated_str:0
+[2023-08-24 11:08:33,811] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,815] INFO in one_page_experience: 当前文本页数:2，translated_str:0.2
+[2023-08-24 11:08:33,815] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,819] INFO in one_page_experience: 当前文本页数:2，translated_str:0.4
+[2023-08-24 11:08:33,819] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,822] INFO in one_page_experience: 当前文本页数:2，translated_str:0.6
+[2023-08-24 11:08:33,823] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,967] INFO in one_page_experience: 当前文本页数:2，translated_str:注意重叠比
+[2023-08-24 11:08:33,967] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:33,969] INFO in one_page_experience: 当前文本页数:2，translated_str:0~0.10.1~0.20.2~0.30.3~0.40.4~0.50.5~0.60.6~0.70.7~0.80.8~0.90.9~1.0
+[2023-08-24 11:08:33,969] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:34,334] INFO in one_page_experience: 当前文本页数:2，translated_str:(b) 场景到对象MLink精度与注意力重叠
+[2023-08-24 11:08:34,334] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:34,613] INFO in one_page_experience: 当前文本页数:2，translated_str:图1：不同模型之间的语义相关性
+[2023-08-24 11:08:34,613] INFO in one_page_experience: 当前文本页数:2,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:08:34,761] INFO in one_page_experience: 当前文本页数:2，translated_str:样本复杂度分析
+[2023-08-24 11:08:34,761] INFO in one_page_experience: 当前文本页数:2，当前文本长度超过50个词

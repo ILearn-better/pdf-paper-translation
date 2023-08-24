@@ -1,0 +1,25 @@
+[2023-08-24 11:07:07,727] INFO in one_page_experience: 当前文本页数:0，translated_str:木元，兰张*，洋洋李
+[2023-08-24 11:07:07,728] INFO in one_page_experience: 当前文本页数:0,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:07:08,621] INFO in one_page_experience: 当前文本页数:0，translated_str:University of Science and Technology of China
+
+ym0813@mail.ustc.edu.cn
+
+zhanglan@ustc.edu.cn
+
+xiangyangli@ustc.edu.cn
+[2023-08-24 11:07:08,622] INFO in one_page_experience: 当前文本页数:0,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:07:08,793] INFO in one_page_experience: 当前文本页数:0，translated_str:Abstract
+[2023-08-24 11:07:08,793] INFO in one_page_experience: 当前文本页数:0，当前文本长度超过50个词
+[2023-08-24 11:07:14,305] INFO in one_page_experience: 当前文本页数:0，translated_str:模型推理的效率对于实际机器学习应用至关重要，尤其是在延迟敏感的任务和资源有限的设备上。一个典型的困境是：为了提供复杂的智能服务（例如智慧城市），我们需要多个机器学习模型的推理结果，但是成本预算（例如GPU内存）不足以运行所有模型。在本工作中，我们研究了黑盒机器学习模型之间的内在关系，并提出了一种新的学习方法。任务：模型链接 模型链接旨在通过学习不同黑盒模型之间的映射（称为模型链接）来弥合它们之间的知识。我们基于模型链接开发了一个调度算法，名为MLink。通过模型链接实现多模态的协同推理，MLink可以在成本预算内提高推理结果的准确性。我们在具有7种不同ML模型的多模态数据集和具有6种ML模型的两个实际世界视频分析系统上评估了MLink。实验结果表明，我们提出的方法可以在各种黑盒模型之间有效地构建模型链接。在预算范围内MLink可以节省667%的推理计算，同时保持94%的推理精度，优于多任务学习、基于深度强化学习的调度器和帧过滤基线
+[2023-08-24 11:07:14,306] INFO in one_page_experience: 当前文本页数:0，当前文本长度超过50个词
+[2023-08-24 11:07:19,012] INFO in one_page_experience: 当前文本页数:0，translated_str:多模态推理任务越来越普遍，例如智能音箱助手（Bentley et al. 2018）、智慧城市（Duan et al. 2018）、基于无人机的视频监控（Dil-shad et al. 2020）、多模态自动驾驶（Feng et al. 2020）等。这些任务通常需要将来自多个模态的数据（例如语音、图像、视频等）结合起来进行分析和决策。为了应对这些工作负载，研究人员已经提出了一系列多模态模型，这些模型可以将来自不同模态的数据结合起来，并从中提取有用的信息。这些模型通常使用深度学习技术来实现，例如卷积神经网络（CNN）、循环神经网络（RNN）和注意力机制（Attention）等。 2020),etc Besides the accuracy of the trained mod- els, costs in the inference phase can become the bottleneck to the quality of services, especially for delay-sensitive tasks and resource-limited devices Towards cost-efficient inference, existing work explored various perspectives to achieve the resource-performance trade-offs Multi-task learning and zipping (He, Zhou, and Thiele 2018; Sanh, Wolf, and Ruder 2019; Crawshaw 2020; Zhang and Yang 2021) can reduce the computing overheads by sharing neurons among different tasks; Model compres- sion (Hinton, Vinyals, andDean 2015; Liu et al 2018; Gold-
+[2023-08-24 11:07:19,012] INFO in one_page_experience: 当前文本页数:0,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:07:19,663] INFO in one_page_experience: 当前文本页数:0，translated_str:兰张是通讯作者。 © 2022, 人工智能协会 (www.aaai.org)。所有权利保留
+[2023-08-24 11:07:19,664] INFO in one_page_experience: 当前文本页数:0，当前文本长度超过50个词
+[2023-08-24 11:07:30,341] INFO in one_page_experience: 当前文本页数:0，translated_str:Bai et al. (2020) and Blum et al. (2020) techniques aim to eliminate parameters and connections that are not relevant to the accuracy of inference.Inference reusing (Guo et al 2018; Ning, Guan, and Shen 2019) approaches aim to avoid repeating the same or similar computations; Source filtering (Li et al 2020) methods try to transmit only necessary input data to backend ML models Adaptive configuration (Jiang et al 2018) and multi-model scheduling (Yuan et al 2020a) were proposed to make inference workloads adaptive to the dynamics of input content. We summarize them as answers to an interesting question: How to obtain as accurate inference as possible with limited computing resources?在不执行机器学习模型的情况下，尽可能获得结果从这个角度来看，多任务学习和模型压缩通过剪枝原始模型来生成更轻量级的模型，用于相同的推理任务。推理重用和源过滤技术通过分析输入之间的相关性，将先前的推理结果作为预测结果重新使用。Based on the observation that, for some input data, the accuracy of expensive and cheap models is similar, adaptive configuration analyzes the input dynam- ics and predicts the inference results of expensive models by executing cheap ones Adaptive multi-model scheduling predicts unnecessary inference results as empty using the ex- ecuted models’ outputs as the hint information We address this problem from a novel perspective: link- ing black-box models We were motivated by the insight that even ML models that are在输入模态、学习任务、架构等方面，不同类型的机器学习模型可以相互分享知识，因为机器学习模型容易出现“过拟合”（Song and Shmatikov 2020），不同模型的输出具有语义相关性（Tan et al 2018）如果我们能够有效地将不同机器学习模型之间的知识进行桥接，那么就可以根据已执行模型的输出来直接预测剩余模型的推断结果。如果这个预测的成本较低，那么就可以在有限的成本预算下，提高所有未执行模型推断结果的准确性，与原始工作流程相比，未执行模型的结果无法获得的情况。为了实现这一愿景，需要解决以下两个主要挑战：
+1. 如何有效地将不同机器学习模型之间的知识进行桥接；
+2. 如何降低预测的成本。(1) 如何在黑盒子和高度不同的机器学习模型之间建立知识水平的链接？实际上，部署的机器学习模型可以有不同的架构和输入模态，并且可以由不同的编程语言和机器学习框架开发。异构性
+[2023-08-24 11:07:30,341] INFO in one_page_experience: 当前文本页数:0,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:07:30,596] INFO in one_page_experience: 当前文本页数:0，translated_str:第36届 AAAI 人工智能会议
+[2023-08-24 11:07:30,596] INFO in one_page_experience: 当前文本页数:0,翻译前的文本:before_translated后台打印，不写入日志
+[2023-08-24 11:07:30,598] INFO in one_page_experience: 当前文本页数:0，translated_str:9475

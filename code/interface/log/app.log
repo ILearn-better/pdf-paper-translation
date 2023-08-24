@@ -1,0 +1,20 @@
+[2023-08-24 11:08:47,804] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:准备获取单页最多的font size.........
+[2023-08-24 11:08:47,824] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:已经获取单页最多的font size
+[2023-08-24 11:08:47,824] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:已生成的new_translated_page_block
+[2023-08-24 11:08:47,824] INFO in one_page_experience: 地址:/home/zhoulikun/zhou_work/pdf2md/code/interface/one_page_experience.py,message:准备进行格式恢复... ...
+[2023-08-24 11:08:47,825] INFO in one_page_experience: 翻译后的HTML输出完成，路径为:media/HTMLorPNG_folder/inchat_1/Chrecover.html
+[2023-08-24 11:08:47,825] INFO in one_page_experience: page_width:612,page_height:792
+[2023-08-24 11:08:49,992] INFO in one_page_experience: 翻译后的HTML to PDF转换完成,路径为:media/outputPDF_folder/inchat_1/121212.pdf_2_Chrecover.pdf
+[2023-08-24 11:08:50,022] INFO in one_page_experience: 当前文本页数:3，当前文本长度超过50个词
+[2023-08-24 11:08:51,595] INFO in one_page_experience: 当前文本页数:3，translated_str:输出激活函数是由目标模型的学习任务决定的，对于单标签分类，使用softmax，对于多标签分类和序列预测，使用sigmoid线性激活函数可用于回归和定位任务。在我们的实现中，默认的隐藏单元数量是输出维度的两倍，这在有效性与效率之间实现了良好的权衡。
+[2023-08-24 11:08:51,596] INFO in one_page_experience: 当前文本页数:3，当前文本长度超过50个词
+[2023-08-24 15:37:52,167] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 15:37:52,168] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 15:38:27,336] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 15:38:27,336] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 15:39:41,567] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 15:39:41,567] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 15:41:33,777] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 15:41:33,777] INFO in get_table_and_function: 第0页版面信息获取
+[2023-08-24 15:44:41,571] INFO in get_table_and_function: 成功将0页转为图片
+[2023-08-24 15:44:41,571] INFO in get_table_and_function: 第0页版面信息获取

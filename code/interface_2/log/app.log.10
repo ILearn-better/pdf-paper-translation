@@ -1,0 +1,23 @@
+[2023-08-24 14:27:43,681] INFO in one_page_experience: 当前文本页数:16，translated_str:表8 基于机构投资者与零售投资者的所有权差异。样本被分为两个子样本：拥有高于中位零售业所有权的公司和拥有低于中位零售业所有权的公司。面板1估计了Fama和MacBeth(1973)对同一天绝对异常回报和异常交易量的回归，分别针对每个机构投资者拥有的子样本。面板2估计了在随后的时期[t+2,t+5]内，对于每个机构持股子样本，t日的异常回报的反转。这段话是关于一家公司的控制变量的描述，包括每日新闻量（Stories i,t）、过去一周异常新闻量与前三个季度的比值（AbnStories i, [ t −5 ,t −1]）、平均文章长度（Terms i,t）、市值对账本比率（MCap i,t）、上周异常回报（AbnRet i, [ t −5 ,t −1]）、异常成交量（AbnVol i, [ t −5 ,t −1]）、异常波动率（AbnVolatility i, [ t −5 ,t −1]）和不流动性（Illiquidity i, [ t −5 ,t −1]）。i ， [t − 5 ， t − 1]) 。异常变量是相对于给定日期宇宙中所有公司的加权指数计算的。Newey and West (1987)给出的带有异方差和5个自相关滞后期的误差项的稳健标准误差在括号中给出。所有系数都被缩放以对应解释变量增加10%的效果大小。
+[2023-08-24 14:27:43,849] INFO in one_page_experience: 当前文本页数:16，translated_str:面板1：市场反应
+[2023-08-24 14:27:45,058] INFO in one_page_experience: 当前文本页数:16，translated_str:因变量: | abnret i, t | 因变量: abnvol i, t
+[2023-08-24 14:27:45,063] INFO in one_page_experience: 当前文本页数:16，translated_str:(1)  (2)  (3)  (4)
+[2023-08-24 14:27:45,450] INFO in one_page_experience: 当前文本页数:16，translated_str:低机构所有权 高机构所有权 低机构所有权 高机构所有权
+[2023-08-24 14:27:46,787] INFO in one_page_experience: 当前文本页数:16，translated_str:abnprcold i ， t - 0.076% ∗ ∗ ∗ - 0.123% ∗ ∗ ∗ - 0.002% - 0.077% ∗ ∗ ∗
+[2023-08-24 14:27:46,792] INFO in one_page_experience: 当前文本页数:16，translated_str:(0.022%)  (0.020%)  (0.005%)  (0.013%)
+[2023-08-24 14:27:48,157] INFO in one_page_experience: 当前文本页数:16，translated_str:abnprcrecombination i ， t 0.168% * * * 0.175% * * * 0.079% * * * 0.055% * * *
+[2023-08-24 14:27:48,161] INFO in one_page_experience: 当前文本页数:16，translated_str:(0.024%)  (0.023%)  (0.008%)  (0.010%)
+[2023-08-24 14:27:48,371] INFO in one_page_experience: 当前文本页数:16，translated_str:Panel 2: 返回翻转
+[2023-08-24 14:27:49,403] INFO in one_page_experience: 当前文本页数:16，translated_str:dependent variable: abnret i, [ t +2 ,t +5]
+[2023-08-24 14:27:49,636] INFO in one_page_experience: 当前文本页数:16，translated_str:低机构持股  高机构持股
+[2023-08-24 14:27:51,118] INFO in one_page_experience: 当前文本页数:16，translated_str:abnextentold i, t × abnret i, t - 0.104 ∗ ∗ - 0.085 ∗ ∗
+[2023-08-24 14:27:51,123] INFO in one_page_experience: 当前文本页数:16，translated_str:(0.042)  (0.040)
+[2023-08-24 14:27:52,371] INFO in one_page_experience: 当前文本页数:16，translated_str:abnextentrecombination i, t × abnret i, t - 0.112 ∗ ∗ - 0.145 ∗ ∗ ∗
+[2023-08-24 14:27:52,376] INFO in one_page_experience: 当前文本页数:16，translated_str:(0.049)  (0.051)
+[2023-08-24 14:27:53,290] INFO in one_page_experience: 当前文本页数:16，translated_str:* * * 表示1%的显著性水平，* * * 表示5%的显著性水平，* * * 表示10%的显著性水平。
+[2023-08-24 14:28:01,987] INFO in one_page_experience: 当前文本页数:16，translated_str:根据Bushee et al. (2020) 的方法，对规模至少为50000美元的交易进行数据库跟踪。我们按照Boehmer et al. (2021)的方法识别零售交易：如果交易的TAQ交易所代码为"D"，并且价格正好在一分钱的上下方。我们提出分析作为暗示，因为存在没有完美的零售和机构交易衡量标准的警告；基于规模的方法受到机构将大交易拆分的程度的限制，而子便士交易并不总是能识别零售交易（Barber et al.）。（ 2022 ） ） 。Table A.6中的列1考虑了IROI的机构投资者交易量与零售投资者交易量的总和的比值。第二列侧重于由买方发起的交易，第三列考虑由卖方发起的交易。16每个措施相对于公司层面的平均值进行归一化，以考虑零售投资者可能偏好的特定股票的潜在倾向结果显示，给定日期新闻内容总体增加10%会导致机构零售订单不平衡指数（IROI）降低0.656个百分点。重写与稍微（统计上不显著）更高的投资回报率（IROI）相关。总的来说，零售投资者更愿意在重印时交易，而重组合的分歧似乎较小。
+[2023-08-24 14:28:02,155] INFO in one_page_experience: 当前文本页数:16，translated_str:新闻情感和歧义
+[2023-08-24 14:28:03,022] INFO in one_page_experience: 当前文本页数:16，translated_str:我们探索了实证结果与新闻内容之间的互动，从两个关键维度来看：情感（捕捉正面新闻和负面新闻）和模糊性（捕捉新闻的模糊性）。
+[2023-08-24 14:28:03,698] INFO in one_page_experience: 当前文本页数:16，translated_str:这张表专注于2005年以后的时间段，因为Boehmer et al. (2021)的可用性。
+[2023-08-24 14:28:14,042] INFO in one_page_experience: 当前文本页数:16，translated_str:翻译结果：将给定新闻中传达的事实信息与主观信息的程度进行评估。新闻情感测量和模糊性评估的 方法论 源自 Fedyk (2021)。人类专家手册 -Ally 将 10, 0 0 0 篇新闻文章标记为正面、负面或中性 ， 以及硬或软信息。文章被表示为特征向量，包括故事长度，涵盖的主题，特定单个词，双个词和三个词的出现指示器，句法复杂性以及特定句法结构和语义关系的指示器。我们使用了一种机器学习方法——支持向量机（Cortes和Vapnik，1995）——来根据训练数据中学习到的属性对其他新闻文章进行分类。情感被分为三类：积极、消极和中性。am -biguity 是一个从 0（最直接）到 1（最模糊）的连续测量。歧义分数是两个组成部分的平均值：(i) 方法确定文章情感的自信程度(即文章距离情感类别的分隔超平面有多远)，(ii) 文章是否被归类为困难信息，与该类别的分类信心相互作用。例如，关于收入报告的硬数字的文章被归类为直接型文章。相比之下，讨论员工满意度的文章可能会被归类为模糊不清新闻情感可以与重新组合效应产生重要影响，如果一些重新组合文章将多个先前具有相反情感的文章结合起来，将一篇正面新闻和一篇负面新闻关于同一公司的文章并排放置。从经验上来看，情况并非如此。在59.4%的情况下，重组来自具有相同情感的两篇文章（都是正面的，都是负面的，或者都是中性的）
+[2023-08-24 14:28:14,046] INFO in one_page_experience: 当前文本页数:16，translated_str:108

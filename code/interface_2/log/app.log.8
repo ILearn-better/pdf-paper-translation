@@ -1,0 +1,24 @@
+[2023-08-24 14:28:27,356] INFO in one_page_experience: 当前文本页数:17，translated_str:Table 9：新闻情感差异的影响。这个样本被分为两个子样本：正面新闻和负面（中立）新闻。面板1估计了Fama和MacBeth(1973)在每个子样本中，对同一天绝对异常回报和异常交易量分别与AbnExtentOld和AbnExtentRecombination进行回归。面板2估计了在子期间[t+2,t+5]内t日初始异常回报的反转，针对每一份新闻子样本。控制包括 ﬁ RM 的每日新闻量 (故事 i ， t) ， 过去一周相对于前三个月的异常新闻量 (abnstories i ， [t − 5 ， t − 1]) ， 平均文章长度 (术语 i ， t) ， 对数市值 (mcap i ， t) ， 账面与市场比率 (bm i ， t) ， 前一周异常收益 (abnret i ， [t − 1 ， vol - 5 ， tt − 5 ， t − 1] ） 。异常变量是相对于给定日期宇宙中所有公司的加权指数计算的。Newey and West (1987)给出的带有异方差和5个自相关滞后期的误差项的稳健标准误差在括号中给出。所有系数都被缩放以对应解释变量增加10%的效果大小。
+[2023-08-24 14:28:27,523] INFO in one_page_experience: 当前文本页数:17，translated_str:面板1：市场反应
+[2023-08-24 14:28:28,826] INFO in one_page_experience: 当前文本页数:17，translated_str:依赖 var: | abnret i, t | 依赖 var: abnvol i, t
+[2023-08-24 14:28:28,831] INFO in one_page_experience: 当前文本页数:17，translated_str:(1)  (2)  (3)  (4)
+[2023-08-24 14:28:29,195] INFO in one_page_experience: 当前文本页数:17，translated_str:积极新闻 消极新闻 积极新闻 消极新闻
+[2023-08-24 14:28:30,696] INFO in one_page_experience: 当前文本页数:17，translated_str:abnprcold i ， t - 0.123% * * * * - 0.107% * * * * - 0.086% * * * * - 0.068% * * * *
+[2023-08-24 14:28:30,701] INFO in one_page_experience: 当前文本页数:17，translated_str:(0.038%)  (0.032%)  (0.013%)  (0.013%)
+[2023-08-24 14:28:32,025] INFO in one_page_experience: 当前文本页数:17，translated_str:abnprcrecombination i ， t 0.192% * * * 0.144% * * * 0.106 * * * 0.089% * * * *
+[2023-08-24 14:28:32,030] INFO in one_page_experience: 当前文本页数:17，translated_str:(0.039%)  (0.038%)  (0.014%)  (0.010%)
+[2023-08-24 14:28:32,242] INFO in one_page_experience: 当前文本页数:17，translated_str:Panel 2: 返回翻转
+[2023-08-24 14:28:33,294] INFO in one_page_experience: 当前文本页数:17，translated_str:dependent variable: abnret i, [ t +2 ,t +11]
+[2023-08-24 14:28:33,484] INFO in one_page_experience: 当前文本页数:17，translated_str:注意力低  注意力高
+[2023-08-24 14:28:35,055] INFO in one_page_experience: 当前文本页数:17，translated_str:abnextentold i, t × abnret i, t - 0.096 * * * * - 0.087 *
+[2023-08-24 14:28:35,060] INFO in one_page_experience: 当前文本页数:17，translated_str:(0.034)  (0.048)
+[2023-08-24 14:28:36,253] INFO in one_page_experience: 当前文本页数:17，translated_str:abnextentrecombination i, t × abnret i, t - 0.135 ∗ ∗ - 0.113 ∗ ∗
+[2023-08-24 14:28:36,258] INFO in one_page_experience: 当前文本页数:17，translated_str:(0.054)  (0.056)
+[2023-08-24 14:28:37,173] INFO in one_page_experience: 当前文本页数:17，translated_str:* * * 表示1%的显著性水平，* * * 表示5%的显著性水平，* * * 表示10%的显著性水平。
+[2023-08-24 14:28:43,343] INFO in one_page_experience: 当前文本页数:17，translated_str:在34.2%的情况下，重组会将一个带有正向或负向故事的中性故事混合在一起。只有6.4%的案例反映出从一个阳性文章和一个阴性文章中抽取的重组合。因此，混音调似乎不是重组新闻的问题在表8中，我们根据新闻情感对样本进行了划分。对于样本中的每个ticker-date，我们计算该ticker在该日期上发布的新闻中平均情感。我们把平均情绪为正的日期标记为“好消息”，剩下的标记为“坏消息”在好的新闻样本和坏的新闻样本中，结果非常相似。好的新闻样本中的系数估计值略有增加，但差异不大。总的来说，新闻情感似乎不是我们结果的重要因素我们在互联网附录A.7中加入了新闻不明确度的控制。对于每个安全，每天的不确定性被定义为该安全当天文章中标签为该安全的平均不确定性分数。结果与表5和表6中报告的基线结果非常相似，其中同日回报和成交量的系数稍强，而反转回报的系数稍低。总的来说，我们的发现对于好坏消息都是稳健的，并且在控制每条新闻中关于每个安全的量化信息量之后仍然保持一致。
+[2023-08-24 14:28:43,534] INFO in one_page_experience: 当前文本页数:17，translated_str:5.4 时间序列效应
+[2023-08-24 14:28:44,362] INFO in one_page_experience: 当前文本页数:17，translated_str:我们研究了越来越复杂的套利者是否削弱了对再组合新闻的反应。第2节中的证据表明，这种情况并没有发生：在一个受控的实验环境中
+[2023-08-24 14:28:50,892] INFO in one_page_experience: 当前文本页数:17，translated_str:2018-2019年期间，活跃的金融专业人士仍然容易受到重组形式的老新闻的影响。我们目前正在调查这种易感性是否得到了持续的市场效应的支持利用Bloomberg终端数据的长时间序列，我们研究了旧新闻和重组新闻对价格的影响，考虑了估计系数的时间序列。我们分别对样本中的每个完整年份重新估计回归模型（3）。结果得到的系数在图中绘制。6 用实线表示 ， 95% 的置信区间用虚线标记。根据图6中的面板1，从2001年到2014年，旧新闻对市场的反应总体上呈下降趋势。例如，在给定的一天中，公司新闻的10%额外部分由2001年的旧内容组成，对应统计上不显著的4个基点更小的绝对异常回报，而2014年每天的10%额外旧新闻则对应精确估计的14个基点更小的绝对异常回报。这与自然语言处理的进步是一致的，使金融专业人士能够更容易地筛选出基本重复，例如直接复制旧新闻的内容。17
+[2023-08-24 14:28:51,962] INFO in one_page_experience: 当前文本页数:17，translated_str:相比之下，对信息再组合的反应（与再版相比）随着时间的推移而增加。图6的面板2显示，对信息再组合的反应（与再版相比）随着时间的推移而增加
+[2023-08-24 14:28:53,179] INFO in one_page_experience: 当前文本页数:17，translated_str:2000-2014年间， Bloomberg终端没有提供筛选重印的功能，但有人尝试使用自然语言处理技术将重印归类到原始标题下。很可能Bloomberg的更高级别的机构客户也采用了类似的策略。
+[2023-08-24 14:28:53,183] INFO in one_page_experience: 当前文本页数:17，translated_str:109

@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "097c097e-c86f-4013-9e66-8736a1c7d96e",
+		"name": "pdf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28411983"
+	},
+	"item": [
+		{
+			"name": "01 获取PDF内容",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ArnoJin/Desktop/PDF/Attention is all you need.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://pdf.insigma.chat:8198/api/pdf_paragraph_to_txt",
+					"protocol": "http",
+					"host": [
+						"pdf",
+						"insigma",
+						"chat"
+					],
+					"port": "8198",
+					"path": [
+						"api",
+						"pdf_paragraph_to_txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 获取PDF内容再翻译",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ArnoJin/Desktop/PDF/Attention is all you need.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://pdf.insigma.chat:8198/api/pdf_paragraph_to_translationTxT",
+					"protocol": "http",
+					"host": [
+						"pdf",
+						"insigma",
+						"chat"
+					],
+					"port": "8198",
+					"path": [
+						"api",
+						"pdf_paragraph_to_translationTxT"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 获取PDF内容（MD格式）",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/EDY/Desktop/project/pdf2md/code/media/Attention is all you need.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://pdf.insigma.chat:8198/api/pdf2md",
+					"protocol": "http",
+					"host": [
+						"pdf",
+						"insigma",
+						"chat"
+					],
+					"port": "8198",
+					"path": [
+						"api",
+						"pdf2md"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 获取PDF内容（HTML格式）",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ArnoJin/Desktop/PDF/Attention is all you need.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://pdf.insigma.chat:8198/api/pdf2html_dont_translate",
+					"protocol": "http",
+					"host": [
+						"pdf",
+						"insigma",
+						"chat"
+					],
+					"port": "8198",
+					"path": [
+						"api",
+						"pdf2html_dont_translate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05 获取PDF内容再翻译（HTML格式）",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ArnoJin/Desktop/PDF/Attention is all you need.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://pdf.insigma.chat:8198/api/pdf2html_translated",
+					"protocol": "http",
+					"host": [
+						"pdf",
+						"insigma",
+						"chat"
+					],
+					"port": "8198",
+					"path": [
+						"api",
+						"pdf2html_translated"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
