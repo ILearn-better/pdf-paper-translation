@@ -1,7 +1,11 @@
+import os
+import subprocess
+import tempfile
+from urllib.request import pathname2url
+
 import fitz
 from PIL import Image
 import numpy as np
-import pdfkit
 from collections import Counter
 
 def get_one_page_span(page, page_num):
@@ -54,41 +58,105 @@ def pixmap_to_PIL_image(pixmap):
 
 
 
-def pdfkit_html_to_PDF(html_file, output_pdf_path,width,height):
+def _find_browser():
     """
-    pdfkit方法
+    查找本机可用于 HTML -> PDF 的无头浏览器（Chromium 内核）。
+    优先 Edge（Windows 自带），其次 Chrome。
     """
-    # 配置Wkhtmltopdf的路径
-    config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
-    # HTML文件的路径
-    options = {
-        'quiet': '',
-        # 'dpi': 75,
-        'javascript-delay': '2000',  # 延时2s，echarts画图需要时间
-        # 'minimum-font-size': '24',  # 字体大小
-        # 'footer-right': 'xx有限公司',  # 页脚
-        # 'footer-font-size': 10,  # 页脚字体大小
-        # 'footer-spacing': 20,  # 页脚距离正文距离
-        # 'footer-line': '',  # 页脚显示与正文分割线
-        # 'margin-bottom': 25,  # 正文与底部距离
-        'encoding': 'UTF-8',
-        "enable-local-file-access": None,
-        'image-quality': 500,  # 当使用 jpeg 算法压缩图片时使用这个参数指定的质量(默认为 94)  解决分式位置上移问题，原因不清楚，猜测：公式被转成类似图片
-        # 'no-pdf-compression': '',
-        'page-width': str(width)+"px",  # 设置页面宽度为8.5英寸
-        'page-height':str(height)+"px"  # 设置页面高度为11英寸
-    }
+    candidates = [
+        os.path.expandvars(r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"),
+        os.path.expandvars(r"%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"),
+        os.path.expandvars(r"%LocalAppData%\Microsoft\Edge\Application\msedge.exe"),
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+        os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    ]
+    for p in candidates:
+        if p and os.path.isfile(p):
+            return p
+    return None
 
-    # 使用pdfkit将HTML转换为PDF，并传入配置
-    pdfkit.from_file(html_file, output_pdf_path, options=options, configuration=config)
+
+def html_to_pdf(html_file, output_pdf_path, width, height, timeout=180):
     """
-    pdfkit问题解决方案:
-    https://blog.csdn.net/weixin_54644396/article/details/113055065
-    参数说明:
-    https://wkhtmltopdf.org/usage/wkhtmltopdf.txt
-    下载:
-    https://wkhtmltopdf.org/downloads.html
+    用 Chromium 内核无头模式把 HTML 渲染成 PDF。
+    通过 @page 规则锁定页面尺寸，保证与原始 PDF 页面 1:1 对应。
+
+    参数:
+        html_file: 输入 html 路径
+        output_pdf_path: 输出 pdf 路径
+        width, height: 目标页面尺寸（px，等于原 PDF 页面的 point 值）
     """
+    browser = _find_browser()
+    if not browser:
+        raise RuntimeError(
+            "未找到 Edge/Chrome，无法把 HTML 渲染为 PDF。请安装 Microsoft Edge 或 Google Chrome。"
+        )
+
+    with open(html_file, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    # 锁定页面尺寸并清零默认边距
+    inject = (
+        "<style>"
+        "@page {{ size: {w}px {h}px; margin: 0; }}"
+        "html, body {{ margin: 0; padding: 0; background: #fff; }}"
+        "</style>"
+    ).format(w=int(round(width)), h=int(round(height)))
+    if "</head>" in html:
+        html = html.replace("</head>", inject + "</head>", 1)
+    else:
+        html = inject + html
+
+    render_html = os.path.splitext(html_file)[0] + ".render.html"
+    with open(render_html, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    output_pdf_path = os.path.abspath(output_pdf_path)
+    out_dir = os.path.dirname(output_pdf_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+    if os.path.exists(output_pdf_path):
+        os.remove(output_pdf_path)
+
+    profile_dir = tempfile.mkdtemp(prefix="html2pdf_")
+    # pathname2url 只做转义，不带 file: 协议头，必须补上，否则浏览器会当成无效地址
+    page_url = pathname2url(os.path.abspath(render_html))
+    if not page_url.lower().startswith("file:"):
+        page_url = "file:" + page_url
+    cmd = [
+        browser,
+        "--headless=new",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-pdf-header-footer",
+        "--run-all-compositor-stages-before-draw",
+        "--virtual-time-budget=5000",
+        "--user-data-dir=" + profile_dir,
+        "--print-to-pdf=" + output_pdf_path,
+        page_url,
+    ]
+    proc = subprocess.run(cmd, capture_output=True, timeout=timeout)
+    if not os.path.isfile(output_pdf_path):
+        raise RuntimeError(
+            "HTML 转 PDF 失败。浏览器返回码:{}\n{}\n{}".format(
+                proc.returncode,
+                proc.stdout.decode("utf-8", "ignore")[-1500:],
+                proc.stderr.decode("utf-8", "ignore")[-1500:],
+            )
+        )
+    return output_pdf_path
+
+
+def pdfkit_html_to_PDF(html_file, output_pdf_path, width, height):
+    """
+    [已改造] 函数名沿用，内部实现由 pdfkit + wkhtmltopdf 换成 Edge/Chrome 无头渲染。
+    原实现依赖 Linux 路径 /usr/bin/wkhtmltopdf，在 Windows 上不可用。
+    """
+    return html_to_pdf(html_file, output_pdf_path, width, height)
 
 def statistic_of_max_block_span(block_with_lines):
     """

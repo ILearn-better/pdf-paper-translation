@@ -23,7 +23,8 @@ class GPT_API:
         os.environ["http_proxy"] = "http://127.0.0.1:7890"
         os.environ["https_proxy"] = "http://127.0.0.1:7890"
 
-        openai.api_key = "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"
+        # API Key 从环境变量读取，禁止硬编码入库
+        openai.api_key = os.environ.get("OPENAI_API_KEY", "")
         # 将用户输入添加到对话历史
         prompt = "你是我的文章翻译助手，我将给你一段英文文本，请你帮我翻译为中文，要求尽可能精简和准确。" \
                  "如果只有一个单词就直接翻译该单词。" \

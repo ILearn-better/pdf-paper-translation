@@ -4,5 +4,14 @@
 # 忽略某个目录
 **/__pycache__/
 
+# 密钥与运行产物（不入库）
+.env
+code/interface/media/HTMLorPNG_folder/
+code/interface/media/inputPDF_folder/
+code/interface/media/outputPDF_folder/
+code/interface/out/
+code/interface/translate_cache.json
+code/interface/log/*.log*
+
 
 
