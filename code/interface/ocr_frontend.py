@@ -61,7 +61,7 @@ PROFILES = {
 }
 
 _BASE_KWARGS = dict(
-    device="cpu",
+    device=None,                     # 运行时由 _pick_device() 填充
     enable_mkldnn=False,
     use_doc_orientation_classify=False,
     use_doc_unwarping=False,
@@ -76,11 +76,33 @@ _BASE_KWARGS = dict(
 _PIPELINES = {}
 
 
+def _pick_device():
+    """设备自动探测：装了 GPU 版 paddle 就用 GPU，否则退回 CPU。
+
+    环境变量 PADDLE_DEVICE=cpu/gpu 可强制指定。
+    """
+    forced = os.environ.get("PADDLE_DEVICE", "").strip().lower()
+    if forced in ("cpu", "gpu"):
+        return forced
+    try:
+        import paddle  # noqa: WPS433
+        if paddle.device.is_compiled_with_cuda():
+            try:
+                if paddle.device.cuda.device_count() > 0:
+                    return "gpu"
+            except Exception:  # noqa: BLE001
+                return "gpu"
+    except Exception:  # noqa: BLE001
+        pass
+    return "cpu"
+
+
 def _pipeline_kwargs(profile="default"):
     if profile not in PROFILES:
         raise ValueError("未知 OCR 档位：%s（可选 %s）" % (profile, "/".join(PROFILES)))
     kw = dict(_BASE_KWARGS)
     kw.update(PROFILES[profile])
+    kw["device"] = _pick_device()
     return kw
 
 

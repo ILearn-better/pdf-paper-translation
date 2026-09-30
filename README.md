@@ -100,6 +100,12 @@ python translate_pdf.py 论文.pdf ^
   独立进程单页非常稳；崩了只损失一页并自动重试，代价是每页多 ~12s 模型加载。
 - 文字块按 **OCR 行**拆分而不是整块还原：`block_content` 有时会把题干和
   A/B/C/D 选项合并成一行，按行还原才能保住试卷的分行结构。
+- **设备自动探测**：装了 GPU 版 Paddle（`paddlepaddle-gpu`）就自动走 GPU，
+  否则退回 CPU；环境变量 `PADDLE_DEVICE=cpu/gpu` 可强制指定。
+  GPU（RTX 4050 6GB）单页 OCR 约 150s → 数秒级。CPU 版的 oneDNN 缺陷
+  只影响 CPU，GPU 上无此问题（flags 留着无害）。
+  Windows GPU 安装：官方 cu118 源装 `paddlepaddle-gpu==3.3.1`（驱动需 ≥452.39，
+  cu126 需 ≥550.54），CUDA 运行库（nvidia-*-cu11 共 ~1.7GB）会一并作为 pip 依赖拉取。
 
 ## 流水线
 
