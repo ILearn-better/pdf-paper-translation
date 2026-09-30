@@ -28,6 +28,7 @@ if HERE not in sys.path:
 import fitz  # noqa: E402
 from PIL import Image  # noqa: E402
 
+import ocr_frontend  # noqa: E402
 from process_page_function import html_to_pdf  # noqa: E402
 from deepseek_translate import translate_batch  # noqa: E402
 
@@ -359,7 +360,8 @@ def _to_file_uri(p):
 # --------------------------------------------------------------------------- #
 # 主流程
 # --------------------------------------------------------------------------- #
-def translate_pdf(pdf_path, out_dir=None, pages="", workers=8, scale=2.0, keep_tmp=False):
+def translate_pdf(pdf_path, out_dir=None, pages="", workers=8, scale=2.0, keep_tmp=False,
+                  ocr="auto", ocr_profile="default"):
     pdf_path = os.path.abspath(pdf_path)
     if not os.path.isfile(pdf_path):
         raise FileNotFoundError("找不到输入文件: {}".format(pdf_path))
@@ -387,15 +389,33 @@ def translate_pdf(pdf_path, out_dir=None, pages="", workers=8, scale=2.0, keep_t
     print("[1/4] 打开 PDF: {} 页，本次处理 {} 页".format(doc.page_count, len(page_list)))
 
     # ---------- 阶段一：抽取全部元素 ----------
+    # 扫描件没有文本层（get_text_blocks 返回空），直接走原逻辑会抽不到任何元素，
+    # 渲染出来就是白页。所以先探一下：没有文本层的页面改走「版式识别 + OCR」。
     per_page = []
+    ocr_pages = []
     for i in page_list:
         page = doc[i]
-        els, w, h = collect_page(page, i, pic_dir, scale=scale)
+        use_ocr = ocr == "always" or (ocr == "auto" and not ocr_frontend.page_has_text(page))
+        if use_ocr:
+            els, w, h = ocr_frontend.collect_page_ocr(
+                page, i, pic_dir, scale=scale, profile=ocr_profile, log=print
+            )
+            ocr_pages.append(i + 1)
+        else:
+            els, w, h = collect_page(page, i, pic_dir, scale=scale)
         text_n = sum(1 for e in els if e["type"] == "text")
         img_n = sum(1 for e in els if e["type"] == "image")
         per_page.append({"page_index": i, "elements": els, "width": w, "height": h})
         print(
-            "      第 {} 页: 文本块 {} 个, 图片块 {} 个".format(i + 1, text_n, img_n)
+            "      第 {} 页{}: 文本块 {} 个, 图片块 {} 个".format(
+                i + 1, "（扫描件，已过版式识别）" if use_ocr else "", text_n, img_n
+            )
+        )
+    if ocr_pages:
+        print(
+            "      共 {} 页走版式识别，识别出的文字将参与翻译，图/表/公式原位保留".format(
+                len(ocr_pages)
+            )
         )
 
     # ---------- 阶段二：并发翻译 ----------
@@ -468,7 +488,20 @@ def main():
     )
     ap.add_argument("--workers", type=int, default=8, help="翻译并发数，默认 8")
     ap.add_argument("--scale", type=float, default=2.0, help="图片裁切倍率，默认 2.0")
+    ap.add_argument(
+        "--ocr",
+        choices=("auto", "always", "never"),
+        default="auto",
+        help="扫描件版式识别：auto=只对没有文本层的页启用（默认），always=全部按扫描件处理，never=关闭",
+    )
+    ap.add_argument(
+        "--ocr-profile",
+        choices=("default", "fast"),
+        default="default",
+        help="版式识别档位：default 精度优先，fast 用移动版 OCR 模型快 3~5 倍",
+    )
     ap.add_argument("--keep-tmp", action="store_true", help="保留中间产物（单页 HTML/PDF）")
+
     args = ap.parse_args()
 
     translate_pdf(
@@ -478,6 +511,8 @@ def main():
         workers=args.workers,
         scale=args.scale,
         keep_tmp=args.keep_tmp,
+        ocr=args.ocr,
+        ocr_profile=args.ocr_profile,
     )
 
 
