@@ -95,6 +95,11 @@ python translate_pdf.py 论文.pdf ^
   pipeline 参数里的 `enable_mkldnn=False` 是第二道保险。
 - 公式识别与表格识别**主动关掉**（`use_formula_recognition=False` 等）：
   一是省掉 7 个模型的加载与推理，二是这些区域本来就按图片保留，识别了也用不上。
+- OCR 放在**每页一个子进程**里跑（`ocr_frontend` 以 `--png/--out` 参数自调）：
+  实测长进程连续推理多页偶发 Segmentation fault（Paddle 3.4.0 / Windows CPU），
+  独立进程单页非常稳；崩了只损失一页并自动重试，代价是每页多 ~12s 模型加载。
+- 文字块按 **OCR 行**拆分而不是整块还原：`block_content` 有时会把题干和
+  A/B/C/D 选项合并成一行，按行还原才能保住试卷的分行结构。
 
 ## 流水线
 

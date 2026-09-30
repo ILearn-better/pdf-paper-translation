@@ -21,9 +21,14 @@ translate_pdf.py 原本完全依赖 PyMuPDF 的文本块（page.get_text_blocks�
 图 / 表 / 公式 / 印章 / 图表区域                  -> 从页面位图裁切，原位回贴，不翻译
 （数学卷的公式与几何图靠后面这条保住原样，不会被 OCR 成乱码）
 """
+import argparse
 import glob
 import json
 import os
+import shutil
+import subprocess
+import sys
+import tempfile
 import time
 
 # ---------------------------------------------------------------------------
@@ -179,6 +184,56 @@ def _line_font_size(lx0, ly0, lx1, ly1, scale):
 
 
 # ---------------------------------------------------------------------------
+# 子进程 worker
+# ---------------------------------------------------------------------------
+# 实测长进程里连续跑多页 OCR 偶发 Segmentation fault（Paddle 3.4.0 / Windows CPU），
+# 而独立进程单页跑非常稳。所以 OCR 统一放到子进程里做：每页一个 worker，
+# 模型加载约 12s（有缓存），崩了只损失那一页，主程序还能重试。
+def _run_worker(png_path, profile, out_json, log=print):
+    cmd = [
+        sys.executable, os.path.abspath(__file__),
+        "--png", png_path, "--profile", profile, "--out", out_json,
+    ]
+    env = dict(os.environ)
+    env.setdefault("PYTHONIOENCODING", "utf-8")
+    t0 = time.time()
+    proc = subprocess.run(cmd, capture_output=True, env=env)
+    if proc.returncode != 0 or not os.path.isfile(out_json):
+        tail = (proc.stderr or b"")[-800:].decode("utf-8", "ignore")
+        raise RuntimeError(
+            "OCR 子进程失败（exit {}）:\n{}".format(proc.returncode, tail)
+        )
+    log("      版面识别耗时 %.1fs（子进程，含模型加载）" % (time.time() - t0))
+    with open(out_json, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _worker_main():
+    ap = argparse.ArgumentParser(description="单页版式识别 worker")
+    ap.add_argument("--png", required=True)
+    ap.add_argument("--profile", default="default")
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
+
+    pipeline = get_pipeline(args.profile)
+    results = pipeline.predict(args.png)
+    if not results:
+        raise RuntimeError("版面识别没有返回结果")
+
+    tmp_dir = tempfile.mkdtemp(prefix="ocr_worker_res_")
+    try:
+        data = _result_to_dict(results[0], tmp_dir)
+    finally:
+        shutil.rmtree(tmp_dir, ignore_errors=True)
+
+    out_dir = os.path.dirname(os.path.abspath(args.out))
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+    with open(args.out, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False)
+
+
+# ---------------------------------------------------------------------------
 # 单页入口
 # ---------------------------------------------------------------------------
 def page_has_text(page, min_chars=8):
@@ -208,24 +263,20 @@ def collect_page_ocr(page, page_index, pic_dir, scale=2.0, profile="default", lo
     page_png = os.path.join(pic_dir, "p{}_scan.png".format(page_index + 1))
     pil_page.save(page_png)
 
-    # 2) 版面检测 + 文字识别
-    t0 = time.time()
-    if profile not in _PIPELINES:
-        log("      加载版面识别产线（首次运行会自动下载模型，约 1GB，请耐心等待）…")
-    pipeline = get_pipeline(profile)
-    t_load = time.time() - t0
-
-    t1 = time.time()
-    results = pipeline.predict(page_png)
-    if not results:
-        raise RuntimeError("版面识别没有返回结果：第 %d 页" % (page_index + 1))
-    log(
-        "      版面识别耗时 %.1fs（其中产线加载 %.1fs）"
-        % (time.time() - t0, t_load)
-    )
-
-    tmp_dir = os.path.join(pic_dir, "_res_p%d" % (page_index + 1))
-    data = _result_to_dict(results[0], tmp_dir)
+    # 2) 版面检测 + 文字识别（放子进程执行，隔离偶发崩溃，失败重试一次）
+    out_json = os.path.join(pic_dir, "p%d_res.json" % (page_index + 1))
+    data = None
+    last_err = None
+    for attempt in (1, 2):
+        try:
+            data = _run_worker(page_png, profile, out_json, log=log)
+            break
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+            if attempt == 1:
+                log("      OCR 子进程失败，重试一次…")
+    if data is None:
+        raise RuntimeError("第 %d 页版式识别失败: %s" % (page_index + 1, last_err))
     lines = _ocr_lines(data)
 
     # 3) 组装元素
@@ -279,3 +330,8 @@ def collect_page_ocr(page, page_index, pic_dir, scale=2.0, profile="default", lo
         })
 
     return elements, page.rect.width, page.rect.height
+
+
+if __name__ == "__main__":
+    # 被 translate_pdf 以子进程方式调用，不要手工运行
+    _worker_main()
